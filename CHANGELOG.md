@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/Endika/vacilon/compare/v0.1.3...v0.1.4) (2026-11-21)
+
+
+### Features
+
+* **web:** answer the sums kids ask ([de58b65](https://github.com/Endika/vacilon/commit/de58b65cb41af9a2840f662d0f156974fb0be3b0))
+
 ## [0.1.3](https://github.com/Endika/vacilon/compare/v0.1.2...v0.1.3) (2026-11-21)
 
 

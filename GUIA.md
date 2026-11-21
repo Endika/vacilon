@@ -116,6 +116,7 @@ Chispa hace trucos cuando se lo piden por escrito:
 | Cantar | «canta», «cántame una canción», «¿sabes cantar?» |
 | Adivinanza | «dime una adivinanza»; el siguiente mensaje es la respuesta («me rindo» da la solución) |
 | Problemas de mates | «hazme un problema», «un reto de mates», «una suma», «una resta»; sube de nivel con la racha, da una pista al primer fallo y «otro» pide más |
+| Calculadora | «¿cuánto es 7 más 5?», «tres por cuatro», «20 entre 4», «7+5», «6x7»; suma, resta, multiplica y divide (si no es exacta, dice cuánto sobra) y nunca se equivoca. Si la frase ya trae el resultado («3 más 4 son 7»), no salta |
 | Datos curiosos | «cuéntame algo curioso», «un dato curioso», «dime algo que no sepa» (109 datos revisados) |
 | Colores | «¿qué sale si mezclo azul y amarillo?» y el juego «juguemos a los colores» |
 | Morse | «¿cómo se dice hola en Morse?» (lo escribe y lo pita), «enséñame Morse» (adivinar la palabra) |

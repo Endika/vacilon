@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/Endika/vacilon/compare/v0.1.1...v0.1.2) (2026-11-21)
+
+
+### Features
+
+* **web:** tap to talk instead of holding the mic ([920f585](https://github.com/Endika/vacilon/commit/920f5852b98083062cc32161c5a2de15ecc4447b))
+
 ## [0.1.1](https://github.com/Endika/vacilon/compare/v0.1.0...v0.1.1) (2026-11-21)
 
 

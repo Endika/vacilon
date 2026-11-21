@@ -15,6 +15,9 @@ import {
   NAME_REACTIONS,
   NAME_REACTIONS_ABOUT,
   NUMBER_REACTIONS,
+  OPEN_DONT_KNOW,
+  OPEN_ECHO,
+  OPEN_PLAIN,
   SUM_RIGHT,
   SUM_WRONG,
   ZERO_REACTIONS,
@@ -46,6 +49,9 @@ export function createQuestionFollowing(rng: Rng): (reply: string) => FollowUp |
     bad: pick(MOOD_BAD),
     tired: pick(MOOD_TIRED),
   };
+  const openAny = pick([...OPEN_ECHO, ...OPEN_PLAIN]);
+  const openPlain = pick(OPEN_PLAIN);
+  const dontKnow = pick(OPEN_DONT_KNOW);
   const sumRight = pick(SUM_RIGHT);
   const sumWrong = pick(SUM_WRONG);
 
@@ -84,6 +90,10 @@ export function createQuestionFollowing(rng: Rng): (reply: string) => FollowUp |
         return fill(choice(), { option: answer.option });
       case 'mood':
         return moods[answer.mood]();
+      case 'open':
+        return answer.echo ? fill(openAny(), { echo: answer.echo }) : openPlain();
+      case 'dontknow':
+        return dontKnow();
     }
   }
 

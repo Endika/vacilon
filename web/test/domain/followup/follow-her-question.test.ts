@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { readAnswer } from '../../../src/domain/followup/answer';
 import { createQuestionFollowing } from '../../../src/domain/followup/follow-her-question';
-import { MOOD_BAD, MOOD_TIRED } from '../../../src/domain/followup/content';
+import { MOOD_BAD, MOOD_TIRED, OPEN_ECHO, OPEN_PLAIN } from '../../../src/domain/followup/content';
 import { classify, type Question } from '../../../src/domain/followup/question';
 import { mulberry32 } from '../../../src/domain/random';
 import { PASS } from '../../../src/domain/tricks/types';
@@ -50,8 +50,42 @@ describe('classify', () => {
   });
 
   it.each([
+    ['¿Qué plan tienes?', 'open'],
+    ['¿Y tú, qué plan tienes?', 'open'],
+    ['¿Con quién juegas?', 'open'],
+    ['¿Qué le dibujas?', 'open'],
+    ['¿Dónde escondes el peluche?', 'open'],
+    ['¿Por qué te gusta tanto?', 'open'],
+    ['¿A qué te gusta jugar?', 'open'],
+    ['¿Qué has hecho hoy?', 'open'],
+  ])('reads %s as an open question', (reply, kind) => {
+    expect(classify(reply)).toEqual([{ kind }]);
+  });
+
+  it.each([
+    '¿Jugamos a las estatuas?',
+    '¿Quieres que te cuente un secreto?',
+    '¿Te gusta el chocolate?',
+    '¿Qué tal si jugamos al escondite?',
+    '¿Y si bailamos?',
+    '¿Tienes mascota?',
+    '¿Cómo?',
+  ])('does not take %s for an open question', (reply) => {
+    expect(classify(reply)).toEqual([]);
+  });
+
+  it('keeps the earlier kinds ahead of the open one', () => {
+    expect(classify('¿Qué animal te gusta más?')[0].kind).toBe('animal');
+    expect(classify('¿Cómo se llama tu perro?')[0].kind).toBe('name');
+    expect(classify('¿Qué color prefieres, rosa o azul?')[0].kind).toBe('color');
+    expect(classify('¿Qué prefieres, la piña o la fresa?')[0].kind).toBe('choice');
+    expect(classify('¿Cuál es tu juego favorito?')[0].kind).toBe('favourite');
+    expect(classify('¿Cuántos hermanos tienes?')[0].kind).toBe('number');
+    expect(classify('¿Qué tal estás?')[0].kind).toBe('mood');
+  });
+
+  it.each([
     '¡Qué divertido!',
-    '¿Qué has hecho hoy?',
     '¿Quieres que te cuente un secreto?',
     '¿Me cuentas más? Bip.',
     '¿O no?',
@@ -155,6 +189,53 @@ describe('readAnswer for a mood', () => {
   });
 });
 
+describe('readAnswer for an open question', () => {
+  const open = { kind: 'open' } as const;
+  it.each([
+    ['ir al parque', 'ir al parque'],
+    ['con mi hermana', 'con tu hermana'],
+    ['con mis amigos', 'con tus amigos'],
+    ['voy al parque', 'vas al parque'],
+    ['juego conmigo', 'juegas contigo'],
+    ['yo quiero un helado', 'tú quieres un helado'],
+    ['tengo un gato', 'tienes un gato'],
+    ['me gusta bailar', 'te gusta bailar'],
+    ['Soy Luna', 'Eres Luna'],
+    ['¡con mi mamá!', 'con tu mamá'],
+  ])('repeats "%s" as "%s"', (text, echo) => {
+    expect(readAnswer(open, text)).toEqual({ kind: 'open', echo });
+  });
+
+  it.each([
+    'he ido al parque',
+    'fui al cole',
+    'jugué con mi prima',
+    'vamos al parque',
+    'me voy a dormir',
+    'salto en la cama',
+    'es para mi',
+  ])('does not repeat "%s", but still reacts', (text) => {
+    expect(readAnswer(open, text)).toEqual({ kind: 'open', echo: null });
+  });
+
+  it.each(['no sé', 'No lo sé', 'ni idea', 'no me acuerdo'])(
+    'reads "%s" as not knowing',
+    (text) => {
+      expect(readAnswer(open, text)).toEqual({ kind: 'dontknow' });
+    },
+  );
+
+  it('gives up on long, empty or unsafe answers', () => {
+    expect(
+      readAnswer(open, 'pues voy a esconderlo debajo de la cama de mi hermana mayor'),
+    ).toBeNull();
+    expect(readAnswer(open, 'una cosa larguísima con muchísimas letras seguidas ya')).toBeNull();
+    expect(readAnswer(open, '   ')).toBeNull();
+    expect(readAnswer(open, '...')).toBeNull();
+    expect(readAnswer(open, 'una mierda')).toBeNull();
+  });
+});
+
 describe('createQuestionFollowing', () => {
   const follow = createQuestionFollowing(mulberry32(5));
 
@@ -206,7 +287,7 @@ describe('createQuestionFollowing', () => {
   });
 
   it('leaves no follow-up after a reply she cannot follow', () => {
-    expect(follow('¿Qué has hecho hoy?')).toBeNull();
+    expect(follow('¿Quieres que te cuente un secreto?')).toBeNull();
   });
 
   it.each([
@@ -228,5 +309,47 @@ describe('createQuestionFollowing', () => {
   it('offers something after a bad mood and does not hold the tired child', () => {
     expect(MOOD_TIRED.every((reaction) => !reaction.includes('?'))).toBe(true);
     expect(MOOD_BAD.every((reaction) => reaction.endsWith('?'))).toBe(true);
+  });
+
+  it.each([
+    ['¿Y tú, qué plan tienes?', 'ir al parque', 'ir al parque'],
+    ['¿Con quién juegas?', 'con mi hermana', 'con tu hermana'],
+  ])('repeats the answer to %s in second person', async (question, answer, echo) => {
+    const echoing = createQuestionFollowing(() => 0.1);
+    const { stage, calls } = fakeStage();
+    expect(await echoing(question)?.(answer, stage)).toBeNull();
+    expect(said(calls)[0].toLowerCase()).toContain(echo);
+  });
+
+  it('reacts to not knowing, and never repeats a lot of words', async () => {
+    const dontKnow = fakeStage();
+    expect(await follow('¿Qué le dibujas?')?.('no sé', dontKnow.stage)).toBeNull();
+    expect(said(dontKnow.calls)[0]).toMatch(/No pasa nada|Tranquilidad|Vale, no pasa/);
+
+    const long = fakeStage();
+    const twelve = 'lo escondo debajo de la cama de mi hermana para que no lo vea';
+    expect(await follow('¿Dónde escondes el peluche?')?.(twelve, long.stage)).toBe(PASS);
+    expect(long.calls).toEqual([]);
+  });
+
+  it('answers a yes/no question with no follow-up', () => {
+    expect(follow('¿Jugamos a las estatuas?')).toBeNull();
+  });
+
+  it('reacts without repeating when the answer starts with a verb she cannot swap', async () => {
+    const { stage, calls } = fakeStage();
+    await follow('¿Qué has hecho hoy?')?.('he ido al parque', stage);
+    expect(said(calls)[0]).not.toContain('ido al parque');
+    expect(said(calls)).toHaveLength(1);
+  });
+
+  it('has enough open reactions, a third of them without the echo, and does not repeat in a row', async () => {
+    expect(OPEN_ECHO.length + OPEN_PLAIN.length).toBeGreaterThanOrEqual(10);
+    expect(OPEN_PLAIN.length / (OPEN_ECHO.length + OPEN_PLAIN.length)).toBeGreaterThan(0.3);
+    const followUp = createQuestionFollowing(mulberry32(9))('¿Qué plan tienes?');
+    const { stage, calls } = fakeStage();
+    for (let i = 0; i < 40; i++) await followUp?.('ir al parque', stage);
+    const replies = said(calls);
+    replies.slice(1).forEach((reply, i) => expect(reply).not.toBe(replies[i]));
   });
 });

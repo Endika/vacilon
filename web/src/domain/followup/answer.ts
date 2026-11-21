@@ -4,6 +4,7 @@ import { capitalize } from '../names/format';
 import { COLORS } from '../tricks/content/colors';
 import { findNumber } from '../tricks/number-words';
 import { ANIMALS } from './content';
+import { toSecondPerson } from './person';
 import type { Option, Question } from './question';
 
 /** What she understood from the answer, ready to be said back. */
@@ -15,7 +16,10 @@ export type Answer =
   | { kind: 'name'; name: string }
   | { kind: 'favourite'; value: string }
   | { kind: 'choice'; option: string }
-  | { kind: 'mood'; mood: Mood };
+  | { kind: 'mood'; mood: Mood }
+  /** `echo`: what was said, in second person, or null when it cannot be repeated. */
+  | { kind: 'open'; echo: string | null }
+  | { kind: 'dontknow' };
 
 export type Mood = 'good' | 'soso' | 'bad' | 'tired';
 
@@ -125,6 +129,24 @@ function readMood(normalized: string): Answer | null {
   return found ? { kind: 'mood', mood: found[0] } : null;
 }
 
+const MAX_OPEN_WORDS = 5;
+const MAX_OPEN_LENGTH = 40;
+const DONT_KNOW = /^(?:pues |eh )?(?:no (?:lo )?se|ni idea|no me acuerdo|yo que se)\b/;
+
+function readOpen(text: string, normalized: string): Answer | null {
+  if (DONT_KNOW.test(normalized)) return { kind: 'dontknow' };
+  const typed = text
+    .replace(/[¡!¿?.,;:"«»]/g, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  const said = typed.join(' ');
+  if (typed.length === 0 || typed.length > MAX_OPEN_WORDS || said.length > MAX_OPEN_LENGTH)
+    return null;
+  if (!isSafe(said) || !/\p{L}/u.test(said)) return null;
+  return { kind: 'open', echo: toSecondPerson(typed) };
+}
+
 /** Reads the answer to her question, or null when it is not one. */
 export function readAnswer(question: Question, text: string): Answer | null {
   const normalized = normalizeForFilter(text);
@@ -149,5 +171,7 @@ export function readAnswer(question: Question, text: string): Answer | null {
       return readChoice(normalized, question.options);
     case 'mood':
       return readMood(normalized);
+    case 'open':
+      return readOpen(text, normalized);
   }
 }

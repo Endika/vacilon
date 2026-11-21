@@ -41,6 +41,7 @@ function setup(initial: string[] = []) {
     face: { activity: () => undefined, startThinking: () => undefined },
     onAccepted: () => undefined,
     onBusy: () => undefined,
+    followQuestion: () => null,
   });
   const last = () => said[said.length - 1];
   return { conversation, store, said, brainHeard, last, names };

@@ -16,13 +16,15 @@ export interface ConversationDeps {
   bubble: Bubble;
   speaking: Pick<Speaking, 'silence'>;
   face: Pick<FaceMachine, 'activity' | 'startThinking'>;
+  /** What to do with the next message when her reply asked something she can follow. */
+  followQuestion: (reply: string) => FollowUp | null;
   /** Fires when a message is accepted, so the input can be cleared. */
   onAccepted(): void;
   /** Fires when she starts or stops being busy with a message, so the controls can lock. */
   onBusy(busy: boolean): void;
 }
 
-/** One message at a time: a name, a trick, the follow-up it left open, or the brain. */
+/** One message at a time: a name, a trick, the follow-up left open by a trick or her last question, or the brain. */
 export class Conversation {
   private followUp: FollowUp | null = null;
   private working = false;
@@ -106,5 +108,6 @@ export class Conversation {
     ).catch(() => FALLBACK);
     bubble.thinking(false);
     this.say(answer);
+    if (answer !== FALLBACK) this.followUp = this.deps.followQuestion(answer);
   }
 }

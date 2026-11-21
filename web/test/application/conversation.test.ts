@@ -29,6 +29,7 @@ function setup(overrides: Partial<ConversationDeps> = {}) {
     },
     onAccepted: () => void events.push('accepted'),
     onBusy: (busy) => void events.push(`busy:${busy}`),
+    followQuestion: () => null,
     ...overrides,
   };
   return { conversation: new Conversation(deps), events };
@@ -144,5 +145,32 @@ describe('Conversation', () => {
     await conversation.submit('uno');
     await conversation.submit('dos');
     expect(heard).toEqual(['uno', 'dos']);
+  });
+
+  it('reacts to the answer of a question she asked, and leaves other replies to the brain', async () => {
+    const asked: string[] = [];
+    const { conversation, events } = setup({
+      brain: { reply: async () => '¿De qué color es tu mochila?' },
+      followQuestion: (reply) => {
+        asked.push(reply);
+        return async (text, stage) => {
+          if (text !== 'rosa') return PASS;
+          await stage.say('¡Rosa!');
+          return null;
+        };
+      },
+    });
+    await conversation.submit('hola');
+    expect(asked).toEqual(['¿De qué color es tu mochila?']);
+    await conversation.submit('rosa');
+    expect(events).toContain('say:¡Rosa!');
+
+    events.length = 0;
+    await conversation.submit('hola');
+    await conversation.submit('no sé');
+    expect(events.filter((e) => e.startsWith('say:'))).toEqual([
+      'say:¿De qué color es tu mochila?',
+      'say:¿De qué color es tu mochila?',
+    ]);
   });
 });

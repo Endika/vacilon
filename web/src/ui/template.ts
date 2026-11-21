@@ -29,7 +29,7 @@ export const TEMPLATE = `
   <form class="composer" id="composer" autocomplete="off">
     <input id="message" name="message" type="text" maxlength="200" enterkeyhint="send"
       placeholder="Escríbele…" aria-label="Mensaje para Chispa" />
-    <button class="mic" id="mic" type="button" aria-pressed="false" aria-label="Mantén pulsado para hablar" hidden>
+    <button class="mic" id="mic" type="button" aria-pressed="false" aria-label="Toca para hablar" hidden>
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <rect x="9" y="3" width="6" height="12" rx="3" />
         <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7" />

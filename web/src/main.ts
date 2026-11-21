@@ -17,6 +17,7 @@ import { setupInstall } from './infrastructure/install/install';
 import { createPiperVoice } from './infrastructure/piper/neural-voice';
 import { VoiceSelector } from './infrastructure/voice/selector';
 import { safeStorage } from './infrastructure/voice/storage';
+import { browserTimer } from './infrastructure/timer';
 import { Tts } from './infrastructure/voice/tts';
 import { createBubble } from './ui/bubble';
 import { bindComposer } from './ui/composer';
@@ -75,10 +76,7 @@ async function main(host: HTMLElement): Promise<void> {
     (text) => void conversation.submit(text),
     () => face.activity(),
   );
-  const mic = bindMic({
-    press: () => listening.press(),
-    release: () => listening.release(),
-  });
+  const mic = bindMic({ toggle: () => listening.toggle() });
 
   const names = new Names({ store: new LocalNameStore(safeStorage()), rng: Math.random });
   const conversation = new Conversation({
@@ -99,6 +97,7 @@ async function main(host: HTMLElement): Promise<void> {
     engine: () => new VoskEngine(),
     capture: () => createCapture(piper.audioContext() ?? undefined),
     supported: browserSupportsEar,
+    timer: browserTimer,
     face,
     canListen: () => !conversation.busy,
     silence: () => speaking.silence(),

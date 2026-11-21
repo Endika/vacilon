@@ -44,7 +44,7 @@ export class VoskEngine implements Engine {
     }
   }
 
-  begin(onPartial: (text: string) => void): void {
+  begin(onPartial: (text: string) => void, onPause: () => void): void {
     if (!this.client) throw new Error('Ear engine not loaded');
     this.recognizer?.remove();
     this.chunks = [];
@@ -58,7 +58,9 @@ export class VoskEngine implements Engine {
       if (!('result' in message) || !('text' in message.result)) return;
       const done = this.onFinal;
       if (!done) {
-        if (message.result.text) this.chunks.push(message.result.text);
+        if (!message.result.text) return;
+        this.chunks.push(message.result.text);
+        onPause();
         return;
       }
       this.onFinal = undefined;

@@ -7,37 +7,26 @@ export interface MicButton {
   lock(locked: boolean): void;
 }
 
-export function bindMic(talk: Pick<Listening, 'press' | 'release'>): MicButton {
+const TAP_TO_TALK = 'Toca para hablar';
+const TAP_TO_STOP = 'Toca para terminar';
+
+export function bindMic(talk: Pick<Listening, 'toggle'>): MicButton {
   const button = byId<HTMLButtonElement>('mic');
-  const release = (): void => void talk.release();
 
-  /** Space is the talk key only when nothing else would use it. */
-  const isTalkKeyTarget = (target: EventTarget | null): boolean =>
-    target === document.body || target === button;
-
-  button.addEventListener('pointerdown', (event) => {
-    event.preventDefault();
-    button.setPointerCapture(event.pointerId);
-    talk.press();
-  });
-  for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
-    button.addEventListener(type, release);
-  }
-  button.addEventListener('contextmenu', (event) => event.preventDefault());
+  button.addEventListener('click', () => talk.toggle());
+  /** On a focused button, Space already clicks; elsewhere it only talks when nothing else would use it. */
   document.addEventListener('keydown', (event) => {
-    if (event.code !== 'Space' || event.repeat || !isTalkKeyTarget(event.target)) return;
+    if (event.code !== 'Space' || event.repeat || event.target !== document.body) return;
     event.preventDefault();
-    talk.press();
-  });
-  document.addEventListener('keyup', (event) => {
-    if (event.code !== 'Space' || !isTalkKeyTarget(event.target)) return;
-    event.preventDefault();
-    release();
+    talk.toggle();
   });
 
   return {
     setHidden: (hidden) => (button.hidden = hidden),
-    setPressed: (pressed) => button.setAttribute('aria-pressed', String(pressed)),
+    setPressed: (pressed) => {
+      button.setAttribute('aria-pressed', String(pressed));
+      button.setAttribute('aria-label', pressed ? TAP_TO_STOP : TAP_TO_TALK);
+    },
     lock: (locked) => (button.disabled = locked),
   };
 }

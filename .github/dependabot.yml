@@ -21,6 +21,11 @@ updates:
           - patch
       minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      # typescript-eslint caps its TypeScript peer below 7; drop once it supports it.
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
 
   - package-ecosystem: github-actions
     directory: "/"

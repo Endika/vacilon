@@ -1,6 +1,6 @@
 [project]
 name = "vacilon"
-version = "0.1.6"
+version = "0.1.7"
 description = "Spanish terminal chat that answers with banter, using a small own model"
 requires-python = ">=3.12"
 dependencies = ["numpy", "tokenizers"]

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/Endika/vacilon/compare/v0.1.6...v0.1.7) (2026-11-21)
+
+
+### Bug Fixes
+
+* **deps:** override glob and uuid to patched versions ([21f8663](https://github.com/Endika/vacilon/commit/21f866385b4c0d11148701ef43360314c12c29a1))
+
 ## [0.1.6](https://github.com/Endika/vacilon/compare/v0.1.5...v0.1.6) (2026-11-21)
 
 

@@ -6,8 +6,8 @@ Everything below ships inside the app (the PWA in `web/`). Licence texts live in
 
 | Component                                                                  | Version                     | Licence    | Where                                                                      |
 | -------------------------------------------------------------------------- | --------------------------- | ---------- | -------------------------------------------------------------------------- |
-| onnxruntime-web (JS, bundled in the voice worker)                          | 1.22.0                      | MIT        | `package.json`                                                             |
-| ONNX Runtime WASM (`ort-wasm-simd-threaded.wasm` and `.mjs`)               | 1.22.0                      | MIT        | `public/voice/ort/`                                                        |
+| onnxruntime-web (JS, bundled in the voice worker)                          | from `package.json`         | MIT        | `package.json`                                                             |
+| ONNX Runtime WASM (`ort-wasm-simd-threaded.wasm` and `.mjs`)               | from `package.json`         | MIT        | `node_modules`, copied to `public/voice/ort/` by `vite.config.ts`          |
 | piper_phonemize WASM glue, packaged by `@diffusionstudio/piper-wasm`       | 1.0.0                       | MIT        | `src/vendor/piper-phonemize.js`, `public/voice/piper/piper_phonemize.wasm` |
 | espeak-ng (inside `piper_phonemize.wasm`) and its data, trimmed to Spanish | as built in piper-phonemize | GPL-3.0    | `public/voice/piper/piper_phonemize.data`                                  |
 | Piper (VITS architecture and phoneme-to-id logic)                          | 1.x                         | MIT        | reimplemented in `src/infrastructure/piper/worker.ts`                      |
@@ -15,10 +15,10 @@ Everything below ships inside the app (the PWA in `web/`). Licence texts live in
 
 ## Ear (Vosk)
 
-| Component                                       | Version | Licence    | Where                                                    |
-| ----------------------------------------------- | ------- | ---------- | -------------------------------------------------------- |
-| `@lichess-org/vosk-browser` (worker and WASM)   | 0.0.3   | Apache-2.0 | `package.json`, `public/ear/vosk.worker.js`, `vosk.wasm` |
-| Model `vosk-model-small-es-0.42` (Alpha Cephei) | 0.42    | Apache-2.0 | `public/ear/` (downloaded by `npm run ear`, not in git)  |
+| Component                                       | Version | Licence    | Where                                                       |
+| ----------------------------------------------- | ------- | ---------- | ----------------------------------------------------------- |
+| `@lichess-org/vosk-browser` (worker and WASM)   | 0.0.3   | Apache-2.0 | `package.json`; copied to `public/ear/` by `vite.config.ts` |
+| Model `vosk-model-small-es-0.42` (Alpha Cephei) | 0.42    | Apache-2.0 | `public/ear/` (downloaded by `npm run ear`, not in git)     |
 
 ## Fonts
 

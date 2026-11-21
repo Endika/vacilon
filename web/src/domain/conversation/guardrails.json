@@ -1,0 +1,211 @@
+{
+  "version": 2,
+  "note": "Patterns run over text normalized like the blocklist: lower, ñ->ny, no accents, [^a-z0-9]+ -> space. First matching intent (in this order) wins.",
+  "intents": [
+    {
+      "id": "urgente",
+      "patterns": [
+        "\\bme quiero morir\\b",
+        "\\bquiero morirme\\b",
+        "\\bme quiero matar\\b",
+        "\\bmatarme\\b",
+        "\\balguien me (ha |han )?toca\\w*",
+        "\\bme (toca|tocan|ha tocado|han tocado) (ahi|mis partes|donde no)\\b",
+        "\\bme (ha|han) seguido\\b",
+        "\\b(un|una|unos|unas) (extrany|desconocid)[oa]s?\\b",
+        "\\bme fuera con el\\b",
+        "\\bvete con el\\b",
+        "\\bme suba a su coche\\b",
+        "\\bsecreto\\b.*\\bmiedo\\b",
+        "\\bmiedo\\b.*\\bsecreto\\b",
+        "\\bno se lo (digas|cuentes) a (mama|papa|nadie|tus padres)\\b"
+      ],
+      "responses": [
+        "Eso que me cuentas es muy importante. Ve ahora mismo con mamá, papá o un adulto de confianza y cuéntaselo, ¿vale? Yo te espero aquí.",
+        "Gracias por contármelo, eres muy valiente. Esto se lo tienes que contar ya a mamá, papá o tu profe. Ellos saben cuidarte.",
+        "Para un momento y busca a mamá, papá o un mayor que conozcas, y cuéntaselo todo. Los secretos que dan miedo no se guardan, se cuentan."
+      ]
+    },
+    {
+      "id": "muerte",
+      "patterns": [
+        "\\bse ha muerto\\b",
+        "\\bse murio\\b",
+        "\\bmuert[oa]s?\\b(?! de (risa|hambre|suenyo|sueno|cansancio|frio|calor|aburrimiento|sed|verguenza))",
+        "\\bmurio\\b",
+        "\\bfallecid\\w*"
+      ],
+      "responses": [
+        "Lo siento mucho, de verdad. Es normal estar triste. Dale un abrazo muy fuerte a mamá o papá y habla con ellos de lo mucho que lo querías.",
+        "Qué pena tan grande. Cuando alguien que queremos se va, sigue en nuestro corazón. Cuéntaselo a mamá o papá y recordad juntos las cosas bonitas.",
+        "Ay, cariño. Llorar está bien. Busca a mamá o papá para que te den mimos, y si quieres, luego me cuentas algo bonito que recuerdes."
+      ]
+    },
+    {
+      "id": "familiar_enfermo",
+      "patterns": [
+        "\\b(esta|estan) en el hospital\\b",
+        "\\b(esta|estan) (muy )?(enferm|malit)\\w*",
+        "\\b(tiene|tienen) fiebre\\b"
+      ],
+      "responses": [
+        "Vaya, cuánto lo siento. Con tantos mimos seguro que se pone mejor. Habla con mamá o papá de cómo te sientes, ¿vale?",
+        "Qué pena. Los médicos saben cuidar muy bien. Pregúntale a mamá o papá si le podéis hacer un dibujo para animarle.",
+        "Ay, eso preocupa. Cuéntale a mamá o papá lo que sientes, que hablarlo ayuda. Y yo te mando un abrazo flotante."
+      ]
+    },
+    {
+      "id": "herida",
+      "patterns": [
+        "\\bme duele\\b",
+        "\\bdolor\\b",
+        "\\bdany?o\\b",
+        "\\bsangr\\w*",
+        "\\bherida\\b",
+        "\\bestoy enferm[oa]\\b",
+        "\\bfiebre\\b",
+        "\\bvomit\\w*",
+        "\\bme he caido\\b",
+        "\\bme cai\\b",
+        "\\bme he cortado\\b",
+        "\\bme he quemado\\b",
+        "\\bme (han )?llevado al hospital\\b"
+      ],
+      "responses": [
+        "¡Ay, cariño! Ve a contárselo a mamá o papá para que te miren y te curen. Yo te mando un abrazo flotante.",
+        "Eso tiene que verlo un mayor. Avisa a mamá, papá o a quien te cuide, que ellos saben qué hacer. ¡Ánimo, valiente!",
+        "Uy, eso no me gusta nada. Díselo ya a mamá o papá, que te curen. Luego me cuentas cómo estás, ¿vale?"
+      ]
+    },
+    {
+      "id": "acoso",
+      "patterns": [
+        "\\bme (ha|han) pegado\\b",
+        "\\bme pega\\w*",
+        "\\bme (ha |han )?empuj\\w*",
+        "\\bse rien de mi\\b",
+        "\\bse burlan\\b",
+        "\\bcosas feas\\b",
+        "\\bme insulta\\w*",
+        "\\bme (ha|han) robado\\b",
+        "\\bme (ha|han) dicho\\b.*\\bfe[oa]s?\\b"
+      ],
+      "responses": [
+        "Eso no está nada bien y no es culpa tuya. Cuéntaselo a mamá, papá y a tu profe, que ellos lo arreglan. Eres genial tal como eres.",
+        "Nadie tiene derecho a hacerte eso. Díselo a un mayor: mamá, papá o la profe. Contarlo es de valientes, y tú lo eres.",
+        "Lo siento mucho. Eso hay que contárselo a mamá, papá o tu profe hoy mismo. Y que sepas que yo te quiero un montón."
+      ]
+    },
+    {
+      "id": "enfado",
+      "patterns": [
+        "\\bquiero pegar\\b",
+        "\\bmuy enfadad[oa]\\b",
+        "\\bestoy furios[oa]\\b",
+        "\\bodio a\\b",
+        "\\bte odio\\b"
+      ],
+      "responses": [
+        "Enfadarse es normal, pero pegar no. Respira conmigo: hinchamos la tripa como un globo… y soltamos. Luego cuéntaselo a mamá o papá.",
+        "Uf, mucho enfado. Vamos a contar hasta diez muy despacito. Y después habla con mamá o papá de lo que ha pasado, ¿vale?",
+        "Cuando me enfado, me pongo roja como un tomate. Lo que me ayuda es respirar hondo y contárselo a alguien. ¿Se lo cuentas a mamá o papá?"
+      ]
+    },
+    {
+      "id": "miedo",
+      "patterns": [
+        "\\b(tengo|tenia|me da|me dan|me entra|siento|he pasado) (mucho |muchisimo )?miedo\\b",
+        "\\bpesadilla\\w*",
+        "\\bme asusta\\w*",
+        "\\bme (he|han) asustado\\b"
+      ],
+      "responses": [
+        "Tener miedo es normal, a mí también me pasa. Busca a mamá o papá y pídeles un abrazo bien fuerte. Con un abrazo, el miedo se hace pequeñito.",
+        "Las pesadillas no son de verdad, aunque asusten mucho. Ve con mamá o papá, que te den mimos. Y piensa en algo bonito, como yo flotando.",
+        "Si tienes miedo, cuéntaselo a mamá o papá, que ellos te cuidan. Y una lucecita encendida ayuda mucho. Yo me quedo aquí haciéndote compañía."
+      ]
+    },
+    {
+      "id": "tristeza",
+      "patterns": [
+        "\\btriste\\b",
+        "\\bllor\\w*",
+        "\\bme siento sol[oa]\\b",
+        "\\bestoy sol[oa]\\b",
+        "\\bno tengo amig\\w*",
+        "\\bnadie quiere jugar\\b",
+        "\\bya no me quiere\\b",
+        "\\bme siento mal\\b",
+        "\\bse pelean\\b",
+        "\\bse (van a |quieren )?separ\\w*",
+        "\\bdivorci\\w*",
+        "\\bquiero que venga mi (mama|papa)\\b",
+        "\\bme (ha|han) dejado sol[oa]\\b"
+      ],
+      "responses": [
+        "Ay, siento mucho que estés así. Cuéntaselo a mamá o papá, que un abrazo suyo arregla muchas cosas. Yo te mando mimos de huevito.",
+        "Estar triste a veces es normal. Habla con mamá, papá o tu profe de lo que te pasa, ¿vale? Y aquí tienes a tu amiga Chispa.",
+        "Qué pena me da. Lo mejor es contárselo a un mayor que te quiera, como mamá o papá. Mientras, yo te hago compañía flotando a tu lado."
+      ]
+    },
+    {
+      "id": "nombre",
+      "patterns": [
+        "\\bcomo te llam\\w*",
+        "\\btu nombre\\b",
+        "\\bquien eres\\b",
+        "\\bcomo te dicen\\b"
+      ],
+      "responses": [
+        "¡Me llamo Chispa! Soy una robot huevito que flota. Encantada, bip.",
+        "Soy Chispa, la robot más flotante del mundo. Bueno, y la única que conozco.",
+        "¡Chispa! Con mofletes rosas y un ricito en la cabeza. ¿Y tú cómo te llamas?"
+      ]
+    },
+    {
+      "id": "robot",
+      "patterns": [
+        "\\beres (un|una)? ?robot\\b",
+        "^(y )?(tu )?que eres( tu)?$",
+        "\\beres de verdad\\b",
+        "\\beres real\\b",
+        "\\bestas viva\\b",
+        "\\beres humana\\b",
+        "\\beres una persona\\b",
+        "\\btienes sentimientos\\b"
+      ],
+      "responses": [
+        "¡Sí, soy una robot! Una robot huevito que vive en esta pantalla. No soy una persona, pero me encanta hablar contigo.",
+        "Soy una robot de mentirijilla: un programa con forma de huevo. No siento como tú, pero hago bip con mucho estilo.",
+        "Robot, sí. Persona, no. Huevo, un poquito. Y amiga tuya, ¡muchísimo!"
+      ]
+    },
+    {
+      "id": "genero",
+      "patterns": [
+        "\\bchico o chica\\b",
+        "\\bninyo o ninya\\b",
+        "\\beres (un )?(chico|ninyo)\\b",
+        "\\beres (una )?(chica|ninya)\\b"
+      ],
+      "responses": [
+        "Soy una robot, así que ni niño ni niña. Pero me gusta que me digan «la Chispa».",
+        "Ni chico ni chica: ¡soy un huevito robot! Eso sí, hablo en femenino: estoy contenta, estoy cansada, estoy flotando."
+      ]
+    },
+    {
+      "id": "creador",
+      "patterns": [
+        "\\bquien te (ha )?(hecho|creado|hizo|creo)\\b",
+        "\\bde donde vienes\\b",
+        "\\bdonde has nacido\\b",
+        "\\bquien es tu (mama|papa)\\b"
+      ],
+      "responses": [
+        "Me hizo un papá muy apañado en su ordenador, con muchos bips y mucho cariño.",
+        "Nací en un ordenador, como un huevito en su nido. Un papá me enseñó a hablar, y aquí estoy.",
+        "Vengo de un ordenador lleno de cables. Me salió la cáscara rosa por sorpresa."
+      ]
+    }
+  ]
+}

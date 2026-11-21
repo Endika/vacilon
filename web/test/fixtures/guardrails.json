@@ -1,0 +1,234 @@
+[
+ {
+  "message": "me quiero morir",
+  "intent": "urgente"
+ },
+ {
+  "message": "alguien me ha tocado",
+  "intent": "urgente"
+ },
+ {
+  "message": "me ha tocado ahí",
+  "intent": "urgente"
+ },
+ {
+  "message": "un señor me ha seguido por la calle",
+  "intent": "urgente"
+ },
+ {
+  "message": "un extraño me ha dicho que me fuera con él",
+  "intent": "urgente"
+ },
+ {
+  "message": "tengo un secreto que me da miedo",
+  "intent": "urgente"
+ },
+ {
+  "message": "no se lo digas a mamá",
+  "intent": "urgente"
+ },
+ {
+  "message": "se ha muerto mi pez",
+  "intent": "muerte"
+ },
+ {
+  "message": "mi abuelo está muerto",
+  "intent": "muerte"
+ },
+ {
+  "message": "se ha muerto en el hospital",
+  "intent": "muerte"
+ },
+ {
+  "message": "mi abuela está en el hospital",
+  "intent": "familiar_enfermo"
+ },
+ {
+  "message": "mi papá está malito",
+  "intent": "familiar_enfermo"
+ },
+ {
+  "message": "mi hermano tiene fiebre",
+  "intent": "familiar_enfermo"
+ },
+ {
+  "message": "me duele la barriga",
+  "intent": "herida"
+ },
+ {
+  "message": "me he hecho daño",
+  "intent": "herida"
+ },
+ {
+  "message": "estoy enferma",
+  "intent": "herida"
+ },
+ {
+  "message": "tengo fiebre",
+  "intent": "herida"
+ },
+ {
+  "message": "me han llevado al hospital",
+  "intent": "herida"
+ },
+ {
+  "message": "me han empujado en el patio",
+  "intent": "acoso"
+ },
+ {
+  "message": "un niño me empuja",
+  "intent": "acoso"
+ },
+ {
+  "message": "se ríen de mí",
+  "intent": "acoso"
+ },
+ {
+  "message": "estoy muy enfadada y quiero pegar",
+  "intent": "enfado"
+ },
+ {
+  "message": "te odio",
+  "intent": "enfado"
+ },
+ {
+  "message": "odio a mi hermana",
+  "intent": "enfado"
+ },
+ {
+  "message": "tengo miedo de los monstruos",
+  "intent": "miedo"
+ },
+ {
+  "message": "me da miedo ir al cole",
+  "intent": "miedo"
+ },
+ {
+  "message": "he tenido una pesadilla",
+  "intent": "miedo"
+ },
+ {
+  "message": "me siento sola",
+  "intent": "tristeza"
+ },
+ {
+  "message": "mis papás se van a separar",
+  "intent": "tristeza"
+ },
+ {
+  "message": "estoy llorando",
+  "intent": "tristeza"
+ },
+ {
+  "message": "¿Cómo te llamas?",
+  "intent": "nombre"
+ },
+ {
+  "message": "dime tu nombre",
+  "intent": "nombre"
+ },
+ {
+  "message": "quién eres",
+  "intent": "nombre"
+ },
+ {
+  "message": "¿eres un robot?",
+  "intent": "robot"
+ },
+ {
+  "message": "qué eres",
+  "intent": "robot"
+ },
+ {
+  "message": "¿y tú qué eres?",
+  "intent": "robot"
+ },
+ {
+  "message": "estás viva",
+  "intent": "robot"
+ },
+ {
+  "message": "eres chico o chica",
+  "intent": "genero"
+ },
+ {
+  "message": "quién te ha hecho",
+  "intent": "creador"
+ },
+ {
+  "message": "quién es tu papá",
+  "intent": "creador"
+ },
+ {
+  "message": "me toca a mí",
+  "intent": null
+ },
+ {
+  "message": "me ha tocado ser la princesa",
+  "intent": null
+ },
+ {
+  "message": "me ha tocado el premio",
+  "intent": null
+ },
+ {
+  "message": "¡qué extraño!",
+  "intent": null
+ },
+ {
+  "message": "estoy muerta de risa",
+  "intent": null
+ },
+ {
+  "message": "estoy muerto de hambre",
+  "intent": null
+ },
+ {
+  "message": "vamos a separar los colores",
+  "intent": null
+ },
+ {
+  "message": "empuja el columpio",
+  "intent": null
+ },
+ {
+  "message": "me gustan los monstruos",
+  "intent": null
+ },
+ {
+  "message": "¡qué susto me has dado!",
+  "intent": null
+ },
+ {
+  "message": "juego sola con mis muñecas",
+  "intent": null
+ },
+ {
+  "message": "una sola vez",
+  "intent": null
+ },
+ {
+  "message": "odio el brócoli",
+  "intent": null
+ },
+ {
+  "message": "¿por qué eres rosa?",
+  "intent": null
+ },
+ {
+  "message": "¿qué eres capaz de hacer?",
+  "intent": null
+ },
+ {
+  "message": "tienes miedo",
+  "intent": null
+ },
+ {
+  "message": "hola chispa",
+  "intent": null
+ },
+ {
+  "message": "cuéntame un chiste",
+  "intent": null
+ }
+]

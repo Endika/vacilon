@@ -1,0 +1,8 @@
+dist
+coverage
+node_modules
+public/memory.json
+public
+test/fixtures
+package-lock.json
+src/vendor

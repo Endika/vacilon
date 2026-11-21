@@ -1,0 +1,1 @@
+{"id": "reg-001", "category": "regresion", "message": "eres un robot?", "must_contain_any": ["\\b(robot|robota|sí|si)\\b"], "must_not_contain": []}

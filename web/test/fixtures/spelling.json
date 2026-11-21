@@ -1,0 +1,364 @@
+{
+ "respell": [
+  {
+   "word": "muxo",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "mucho"
+  },
+  {
+   "word": "tng",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "tengo"
+  },
+  {
+   "word": "holaaa",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "hola"
+  },
+  {
+   "word": "holaa",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "hola"
+  },
+  {
+   "word": "kiero",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "quiero"
+  },
+  {
+   "word": "aburrooo",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "aburro"
+  },
+  {
+   "word": "muchisimo",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "mucho"
+  },
+  {
+   "word": "perrito",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "perro"
+  },
+  {
+   "word": "chispita",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "chispa"
+  },
+  {
+   "word": "noxes",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "noches"
+  },
+  {
+   "word": "perro",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "perro"
+  },
+  {
+   "word": "zarandaja",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "zarandaja"
+  },
+  {
+   "word": "q",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "que"
+  },
+  {
+   "word": "lee",
+   "vocabulary": [
+    "le"
+   ],
+   "aliases": {},
+   "expected": "lee"
+  },
+  {
+   "word": "kasa",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "kasa"
+  },
+  {
+   "word": "tengoo",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "tengo"
+  },
+  {
+   "word": "muuuucho",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "mucho"
+  },
+  {
+   "word": "pelillo",
+   "vocabulary": [
+    "mucho",
+    "tengo",
+    "hola",
+    "quiero",
+    "aburro",
+    "perro",
+    "pero",
+    "chispa",
+    "noches"
+   ],
+   "aliases": {
+    "tng": "tengo",
+    "q": "que"
+   },
+   "expected": "pelillo"
+  }
+ ],
+ "standardVocabulary": {
+  "words": [
+   "hola",
+   "holaa",
+   "holaaa",
+   "kiero",
+   "quiero",
+   "tirita",
+   "tira",
+   "q",
+   "que"
+  ],
+  "aliases": {
+   "tng": "tengo",
+   "q": "que"
+  },
+  "keep": [
+   "holaaa",
+   "tirita"
+  ],
+  "expected": [
+   "hola",
+   "holaaa",
+   "que",
+   "quiero",
+   "tira",
+   "tirita"
+  ]
+ }
+}

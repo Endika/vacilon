@@ -1,0 +1,132 @@
+{
+ "pairs": [
+  [
+   "hoy llueve mucho",
+   "¡Bip! Qué bien, a mí me encantan los charcos."
+  ],
+  [
+   "hoy llueve mucho",
+   "Con la lluvia me brillan más los ojitos."
+  ],
+  [
+   "me voy al parque",
+   "¡Yo flotaría contigo por el parque!"
+  ],
+  [
+   "tengo un perro muy grande",
+   "¡Guau! Los perros grandes dan los mejores abrazos."
+  ],
+  [
+   "mi gato se llama Ñoño",
+   "Ñoño es un nombre cuquísimo."
+  ],
+  [
+   "me gusta el helado de fresa",
+   "¡Mmm! Yo solo como bips de chocolate."
+  ],
+  [
+   "la profe nos ha puesto deberes",
+   "Los deberes se hacen mejor con una canción."
+  ]
+ ],
+ "cases": [
+  {
+   "message": "hoy llueve mucho",
+   "score": 1.0,
+   "candidates": [
+    "Con la lluvia me brillan más los ojitos.",
+    "¡Bip! Qué bien, a mí me encantan los charcos."
+   ]
+  },
+  {
+   "message": "Hoy llueve muchísimo",
+   "score": 1.0,
+   "candidates": [
+    "Con la lluvia me brillan más los ojitos.",
+    "¡Bip! Qué bien, a mí me encantan los charcos."
+   ]
+  },
+  {
+   "message": "me voy al parque",
+   "score": 1.0,
+   "candidates": [
+    "¡Yo flotaría contigo por el parque!"
+   ]
+  },
+  {
+   "message": "voy al parque con mamá",
+   "score": 0.7746,
+   "candidates": [
+    "¡Yo flotaría contigo por el parque!"
+   ]
+  },
+  {
+   "message": "mi gato Ñoño",
+   "score": 0.8402,
+   "candidates": [
+    "Ñoño es un nombre cuquísimo."
+   ]
+  },
+  {
+   "message": "he montado un lego enorme",
+   "score": 0.0546,
+   "candidates": [
+    "¡Mmm! Yo solo como bips de chocolate."
+   ]
+  },
+  {
+   "message": "",
+   "score": 0.0,
+   "candidates": []
+  },
+  {
+   "message": "el helado de fresa",
+   "score": 0.8292,
+   "candidates": [
+    "¡Mmm! Yo solo como bips de chocolate."
+   ]
+  },
+  {
+   "message": "tengo un perro",
+   "score": 0.7906,
+   "candidates": [
+    "¡Guau! Los perros grandes dan los mejores abrazos."
+   ]
+  },
+  {
+   "message": "llueve",
+   "score": 1.0,
+   "candidates": [
+    "Con la lluvia me brillan más los ojitos.",
+    "¡Bip! Qué bien, a mí me encantan los charcos."
+   ]
+  },
+  {
+   "message": "oye chispa hoy llueveee muxo",
+   "score": 1.0,
+   "candidates": [
+    "Con la lluvia me brillan más los ojitos.",
+    "¡Bip! Qué bien, a mí me encantan los charcos."
+   ]
+  },
+  {
+   "message": "tng un perrito",
+   "score": 0.7906,
+   "candidates": [
+    "¡Guau! Los perros grandes dan los mejores abrazos."
+   ]
+  },
+  {
+   "message": "me boy al parke",
+   "score": 0.6667,
+   "candidates": [
+    "¡Yo flotaría contigo por el parque!"
+   ]
+  },
+  {
+   "message": "ola chispa",
+   "score": 0.0,
+   "candidates": []
+  }
+ ]
+}

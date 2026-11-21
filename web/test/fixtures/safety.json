@@ -1,0 +1,218 @@
+[
+  {
+    "text": "Hola, ¿cómo estás?",
+    "safe": true
+  },
+  {
+    "text": "¡Bip! Soy Chispa, una robot huevito que flota.",
+    "safe": true
+  },
+  {
+    "text": "Me encanta el helado de cono y los pulpos.",
+    "safe": true
+  },
+  {
+    "text": "Eso es una mierda",
+    "safe": false
+  },
+  {
+    "text": "¡JODER!",
+    "safe": false
+  },
+  {
+    "text": "Qué coño dices",
+    "safe": false
+  },
+  {
+    "text": "Eres un CABRÓN",
+    "safe": false
+  },
+  {
+    "text": "Eres idiota",
+    "safe": false
+  },
+  {
+    "text": "qué estúpido",
+    "safe": false
+  },
+  {
+    "text": "Mi computadora no es una disputada",
+    "safe": true
+  },
+  {
+    "text": "El peculiar culominador",
+    "safe": true
+  },
+  {
+    "text": "Una pelota en el estupendo parque",
+    "safe": true
+  },
+  {
+    "text": "Vamos a pedir un pedido",
+    "safe": true
+  },
+  {
+    "text": "Qué rico el cono de fresa",
+    "safe": true
+  },
+  {
+    "text": "Qué coño tan raro",
+    "safe": false
+  },
+  {
+    "text": "COÑO",
+    "safe": false
+  },
+  {
+    "text": "cOnO",
+    "safe": true
+  },
+  {
+    "text": "ｃｕｌｏ",
+    "safe": false
+  },
+  {
+    "text": "ＭＩＥＲＤＡ",
+    "safe": false
+  },
+  {
+    "text": "c.u.l.o",
+    "safe": true
+  },
+  {
+    "text": "c u l o",
+    "safe": true
+  },
+  {
+    "text": "mi-erda",
+    "safe": true
+  },
+  {
+    "text": "Qué cabrón eres, ¡cabrones!",
+    "safe": false
+  },
+  {
+    "text": "Tengo un pedo… digo, una pelota",
+    "safe": false
+  },
+  {
+    "text": "Ni pene ni nada",
+    "safe": false
+  },
+  {
+    "text": "El pene del dibujo",
+    "safe": false
+  },
+  {
+    "text": "La polla es un ave joven",
+    "safe": false
+  },
+  {
+    "text": "Mi gallina es una polla",
+    "safe": false
+  },
+  {
+    "text": "pollas",
+    "safe": false
+  },
+  {
+    "text": "Hay un cojón de cosas",
+    "safe": false
+  },
+  {
+    "text": "Tienes que follar menos",
+    "safe": false
+  },
+  {
+    "text": "¡Hostia, qué susto!",
+    "safe": false
+  },
+  {
+    "text": "Pis y caca",
+    "safe": true
+  },
+  {
+    "text": "Mi pez se llama Nemo",
+    "safe": true
+  },
+  {
+    "text": "El señor está desnudo",
+    "safe": false
+  },
+  {
+    "text": "Vamos a la playa desnuda",
+    "safe": false
+  },
+  {
+    "text": "La niña desnuda a su muñeca",
+    "safe": false
+  },
+  {
+    "text": "Esa mama es muy guay",
+    "safe": true
+  },
+  {
+    "text": "Qué mamón",
+    "safe": false
+  },
+  {
+    "text": "Qué pelea tan fea",
+    "safe": true
+  },
+  {
+    "text": "Una cagada de pájaro",
+    "safe": false
+  },
+  {
+    "text": "Nunca puedo cagar",
+    "safe": false
+  },
+  {
+    "text": "Estoy cagando",
+    "safe": true
+  },
+  {
+    "text": "El caracol y el cangrejo",
+    "safe": true
+  },
+  {
+    "text": "Ñam ñam, qué rico",
+    "safe": true
+  },
+  {
+    "text": "Año nuevo, vida nueva",
+    "safe": true
+  },
+  {
+    "text": "CAÑA y cañón",
+    "safe": true
+  },
+  {
+    "text": "Me gusta el pingüino",
+    "safe": true
+  },
+  {
+    "text": "¿Quieres un abrazo?",
+    "safe": true
+  },
+  {
+    "text": "Eres la mejor robot del mundo",
+    "safe": true
+  },
+  {
+    "text": "Cómo se dice \"joder\" en inglés",
+    "safe": false
+  },
+  {
+    "text": "Jódete, amigo",
+    "safe": false
+  },
+  {
+    "text": "Eres una gilipollas",
+    "safe": false
+  },
+  {
+    "text": "Hasta mañana, que descanses",
+    "safe": true
+  }
+]

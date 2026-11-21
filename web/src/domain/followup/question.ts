@@ -9,6 +9,8 @@ export type Question =
   | { kind: 'number' }
   /** "¿Qué tal estás?": how the child feels. */
   | { kind: 'mood' }
+  /** Any other question led by an interrogative word. */
+  | { kind: 'open' }
   | { kind: 'animal' }
   /** `about`: what is named, as she wrote it ("tu perro"), or empty. */
   | { kind: 'name'; about: string }
@@ -75,6 +77,14 @@ const MOOD_QUESTION = new RegExp(
   `^(?:y )?(?:tu )?(?:que tal(?: estas| te encuentras| te sientes| te va| te ha ido)?|como (?:estas|te encuentras|te sientes|te ha ido|te va|andas))${MOOD_TAIL}$`,
 );
 
+const OPEN_QUESTION =
+  /^(?:y )?(?:tu )?(?:(?:con|a|de|en|por|para|sobre|hacia|desde|hasta) )?(?:que|cual|cuales|donde|adonde|quien|quienes|cuando|como) \w/;
+const PROPOSAL = /\b(si|vamos|jugamos|quieres que|quieres jugar)\b/;
+
+function openQuestion(normalized: string): Question | null {
+  return OPEN_QUESTION.test(normalized) && !PROPOSAL.test(normalized) ? { kind: 'open' } : null;
+}
+
 function classifyOne(question: string): Question | null {
   const normalized = normalizeForFilter(question);
   if (MOOD_QUESTION.test(normalized)) return { kind: 'mood' };
@@ -87,7 +97,7 @@ function classifyOne(question: string): Question | null {
   if (/\b(de )?que color\b/.test(normalized)) return { kind: 'color' };
   if (/\bque (animal|mascota)\b/.test(normalized)) return { kind: 'animal' };
   if (/\bcuant(o|a|os|as)\b/.test(normalized)) return { kind: 'number' };
-  return choiceQuestion(question);
+  return choiceQuestion(question) ?? openQuestion(normalized);
 }
 
 /** The questions in her reply she can follow, the last one first. */

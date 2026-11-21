@@ -138,3 +138,30 @@ export const MOOD_TIRED = [
   'Qué cansancio... Busca un sitio calentito y respira hondo. Yo me quedo aquí, tranquila, por si me necesitas.',
   'Vaya día más largo. Un vaso de agua y un ratito tranquilo sientan genial. Si luego te apetece, jugamos a algo suave.',
 ];
+
+/** `{echo}` is what was said, in second person. */
+export const OPEN_ECHO = [
+  '¡{echo}! Qué buena idea, me lo apunto en la antena. ¿Y qué es lo que más te gusta de eso?',
+  '¡{echo}! Suena muy bien, se me ha encendido el bip de la alegría. ¿Me lo cuentas con más detalle?',
+  'Así que «{echo}». ¡Eso tiene chispa! ¿Y qué es lo mejor de todo?',
+  '¡{echo}, qué bien! Me lo imagino con mi cáscara brillando de emoción. ¿Quieres que adivine qué viene después?',
+  '¡Anda! «{echo}». No me lo esperaba. ¿Cómo se te ocurrió?',
+  '¡{echo}! Eso merece un aplauso de bips: bip, bip, hurra. ¿Y qué viene después?',
+  '¡{echo}! Lo guardo dentro de mi cáscara con mucho cuidado. Te reto: ¿me cuentas algo más sin pensarlo mucho?',
+  '¡Hala, «{echo}»! Me encanta cómo lo dices. ¿Es algo de siempre o es algo nuevo?',
+  '¡{echo}! Ahora tengo curiosidad. Voy a adivinar por qué: ¿porque es muy divertido?',
+];
+
+export const OPEN_PLAIN = [
+  '¡Qué interesante! Se me ha puesto la antena a dar vueltas. ¿Me cuentas más?',
+  '¡Hala, cuánta cosa! Me lo apunto todo en la cáscara. ¿Y qué es lo mejor?',
+  '¡Qué bien suena eso! Bip, bip, estoy muy atenta. ¿Qué pasó después?',
+  '¡Me encanta que me lo cuentes! Tengo la antena toda ilusionada. ¿Y si ahora me haces tú una pregunta a mí?',
+  '¡Vaya, qué cosa más curiosa! Voy a pensarlo con mis bips. ¿Qué es lo que más te gusta de eso?',
+];
+
+export const OPEN_DONT_KNOW = [
+  '¡No pasa nada! A mí también se me quedan los bips en blanco a veces. Probamos entre las dos: tú dices una idea y yo digo otra. ¿Empiezas?',
+  '¡Tranquilidad! No hace falta saberlo todo. Te propongo un juego: tú inventas una respuesta y yo intento adivinarla. ¿Te animas?',
+  'Vale, no pasa nada. Pensar con calma también es de valientes. ¿Quieres que te cuente un chiste mientras lo piensas?',
+];

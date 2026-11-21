@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { readAnswer } from '../../../src/domain/followup/answer';
 import { createQuestionFollowing } from '../../../src/domain/followup/follow-her-question';
+import { MOOD_BAD, MOOD_TIRED } from '../../../src/domain/followup/content';
 import { classify, type Question } from '../../../src/domain/followup/question';
 import { mulberry32 } from '../../../src/domain/random';
 import { PASS } from '../../../src/domain/tricks/types';
@@ -31,6 +32,21 @@ describe('classify', () => {
     ],
   ])('reads %s', (reply, expected) => {
     expect(classify(reply)).toEqual([expected]);
+  });
+
+  it.each([
+    ['¿Qué tal?'],
+    ['¿Qué tal estás hoy?'],
+    ['¿Y qué tal estás?'],
+    ['¿Cómo estás?'],
+    ['¿Cómo te encuentras?'],
+    ['¿Cómo te sientes hoy?'],
+    ['¿Qué tal el día?'],
+    ['¿Y qué tal el cole?'],
+    ['¿Cómo te ha ido?'],
+    ['¿Cómo te ha ido el cole hoy?'],
+  ])('reads %s as a mood question', (reply) => {
+    expect(classify(reply)).toEqual([{ kind: 'mood' }]);
   });
 
   it.each([
@@ -109,6 +125,36 @@ describe('readAnswer', () => {
   });
 });
 
+describe('readAnswer for a mood', () => {
+  const mood = { kind: 'mood' } as const;
+  it.each([
+    ['bien', 'good'],
+    ['genial, gracias', 'good'],
+    ['muy bien', 'good'],
+    ['contenta', 'good'],
+    ['súper feliz', 'good'],
+    ['regular', 'soso'],
+    ['más o menos', 'soso'],
+    ['así así', 'soso'],
+    ['no está mal', 'soso'],
+    ['mal', 'bad'],
+    ['triste', 'bad'],
+    ['enfadada', 'bad'],
+    ['no muy bien', 'bad'],
+    ['no estoy bien', 'bad'],
+    ['cansada', 'tired'],
+    ['tengo sueño', 'tired'],
+    ['agotado', 'tired'],
+  ])('reads "%s" as %s', (text, expected) => {
+    expect(readAnswer(mood, text)).toEqual({ kind: 'mood', mood: expected });
+  });
+
+  it('has nothing to read without a mood word', () => {
+    expect(readAnswer(mood, 'he ido al parque')).toBeNull();
+    expect(readAnswer(mood, 'hola')).toBeNull();
+  });
+});
+
 describe('createQuestionFollowing', () => {
   const follow = createQuestionFollowing(mulberry32(5));
 
@@ -161,5 +207,26 @@ describe('createQuestionFollowing', () => {
 
   it('leaves no follow-up after a reply she cannot follow', () => {
     expect(follow('¿Qué has hecho hoy?')).toBeNull();
+  });
+
+  it.each([
+    ['¿Qué tal estás hoy?', 'bien', /alegría|Bien, bien|encanta|Chócala/],
+    ['¿Cómo estás?', 'no muy bien', /siento|decírmelo|abrazo/],
+    ['¿Qué tal el cole?', 'cansada', /despacito|cansancio|largo/],
+  ])('reacts to the mood in %s / %s', async (question, answer, expected) => {
+    const { stage, calls } = fakeStage();
+    expect(await follow(question)?.(answer, stage)).toBeNull();
+    expect(said(calls)[0]).toMatch(expected);
+  });
+
+  it('passes an answer with no mood to the brain', async () => {
+    const { stage, calls } = fakeStage();
+    expect(await follow('¿Qué tal estás?')?.('he ido al parque', stage)).toBe(PASS);
+    expect(calls).toEqual([]);
+  });
+
+  it('offers something after a bad mood and does not hold the tired child', () => {
+    expect(MOOD_TIRED.every((reaction) => !reaction.includes('?'))).toBe(true);
+    expect(MOOD_BAD.every((reaction) => reaction.endsWith('?'))).toBe(true);
   });
 });

@@ -7,6 +7,8 @@ export type Question =
   | { kind: 'sum'; calculation: Calculation; result: number }
   | { kind: 'color' }
   | { kind: 'number' }
+  /** "¿Qué tal estás?": how the child feels. */
+  | { kind: 'mood' }
   | { kind: 'animal' }
   /** `about`: what is named, as she wrote it ("tu perro"), or empty. */
   | { kind: 'name'; about: string }
@@ -68,8 +70,14 @@ function sumQuestion(question: string): Question | null {
   return outcome.kind === 'exact' ? { kind: 'sum', calculation, result: outcome.value } : null;
 }
 
+const MOOD_TAIL = '(?: (?:hoy|el dia|tu dia|el cole|el colegio|la escuela|por ahi|esta tarde))*';
+const MOOD_QUESTION = new RegExp(
+  `^(?:y )?(?:tu )?(?:que tal(?: estas| te encuentras| te sientes| te va| te ha ido)?|como (?:estas|te encuentras|te sientes|te ha ido|te va|andas))${MOOD_TAIL}$`,
+);
+
 function classifyOne(question: string): Question | null {
   const normalized = normalizeForFilter(question);
+  if (MOOD_QUESTION.test(normalized)) return { kind: 'mood' };
   const sum = sumQuestion(question);
   if (sum) return sum;
   const named = nameQuestion(question);

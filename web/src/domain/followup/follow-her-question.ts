@@ -8,6 +8,10 @@ import {
   CHOICE_REACTIONS,
   COLOR_REACTIONS,
   FAVOURITE_REACTIONS,
+  MOOD_BAD,
+  MOOD_GOOD,
+  MOOD_SOSO,
+  MOOD_TIRED,
   NAME_REACTIONS,
   NAME_REACTIONS_ABOUT,
   NUMBER_REACTIONS,
@@ -36,6 +40,12 @@ export function createQuestionFollowing(rng: Rng): (reply: string) => FollowUp |
   const name = pick(NAME_REACTIONS);
   const favourite = pick(FAVOURITE_REACTIONS);
   const choice = pick(CHOICE_REACTIONS);
+  const moods = {
+    good: pick(MOOD_GOOD),
+    soso: pick(MOOD_SOSO),
+    bad: pick(MOOD_BAD),
+    tired: pick(MOOD_TIRED),
+  };
   const sumRight = pick(SUM_RIGHT);
   const sumWrong = pick(SUM_WRONG);
 
@@ -72,6 +82,8 @@ export function createQuestionFollowing(rng: Rng): (reply: string) => FollowUp |
           : answer.value;
       case 'choice':
         return fill(choice(), { option: answer.option });
+      case 'mood':
+        return moods[answer.mood]();
     }
   }
 

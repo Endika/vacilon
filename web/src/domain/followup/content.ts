@@ -113,3 +113,28 @@ export const CHOICE_REACTIONS = [
   '¡{option}, decidido! Me gusta que lo tengas tan claro. ¿Qué tiene de especial?',
   '¡Pues {option}! Buena elección, lo apunto en mi cáscara. ¿Me cuentas por qué?',
 ];
+
+export const MOOD_GOOD = [
+  '¡Qué alegría! Eso me hace brillar la cáscara. ¿Qué es lo mejor que te ha pasado hoy?',
+  '¡Bien, bien, bien! Se me ha encendido la antena de colores. Te reto: ¿me cuentas algo divertido de hoy?',
+  '¡Eso me encanta! Entonces hoy es un buen día para jugar. ¿A qué jugamos?',
+  '¡Chócala! Bip, bip, qué buenas noticias. ¿Qué es lo que más te ha gustado hoy?',
+];
+
+export const MOOD_SOSO = [
+  'Regular, ¿eh? Pues vamos a darle un empujoncito al día. ¿Quieres que te cuente un chiste?',
+  'Un día normalito también vale. A veces solo hace falta un poco de chispa. ¿Qué te animaría ahora mismo?',
+  'Más o menos... ¡pues vamos a subirlo a un bien! Te reto a contarme algo que te haga reír. ¿Te atreves?',
+];
+
+export const MOOD_BAD = [
+  'Vaya, siento que hoy no sea un buen día. Estoy aquí contigo. ¿Quieres contármelo o prefieres que te cuente un chiste?',
+  'Gracias por decírmelo. A veces los días son difíciles y no pasa nada. ¿Te apetece que hagamos un baile para animarnos, o me cuentas qué ha pasado?',
+  'Un abrazo de bips para ti. Si es algo grande, también puedes contárselo a mamá, papá o a un adulto. ¿Quieres que hablemos de ello o te cuento un chiste?',
+];
+
+export const MOOD_TIRED = [
+  'Uf, entonces hoy toca ir despacito. Descansar también es importante. Cuando quieras, aquí estaré.',
+  'Qué cansancio... Busca un sitio calentito y respira hondo. Yo me quedo aquí, tranquila, por si me necesitas.',
+  'Vaya día más largo. Un vaso de agua y un ratito tranquilo sientan genial. Si luego te apetece, jugamos a algo suave.',
+];

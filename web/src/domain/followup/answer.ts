@@ -14,7 +14,10 @@ export type Answer =
   | { kind: 'animal'; withArticle: string }
   | { kind: 'name'; name: string }
   | { kind: 'favourite'; value: string }
-  | { kind: 'choice'; option: string };
+  | { kind: 'choice'; option: string }
+  | { kind: 'mood'; mood: Mood };
+
+export type Mood = 'good' | 'soso' | 'bad' | 'tired';
 
 const MAX_FREE_WORDS = 4;
 const MAX_FREE_LENGTH = 30;
@@ -101,6 +104,27 @@ function readChoice(normalized: string, options: [Option, Option]): Answer | nul
   return picked.length === 1 ? { kind: 'choice', option: picked[0].said } : null;
 }
 
+const NOT_GOOD = /\b(?:no|nada)(?: \w+){0,2} (?:bien|genial|feliz|contenta|contento|guay|super)\b/;
+const MOODS: [Mood, RegExp][] = [
+  [
+    'bad',
+    /\b(?:mal|malo|mala|triste|enfadad[oa]|enfadadisim[oa]|fatal|aburrid[oa]|fastidiad[oa]|pena)\b/,
+  ],
+  ['tired', /\b(?:cansad[oa]|cansadisim[oa]|agotad[oa]|sueny?o|dormir)\b|\bsin energia\b/],
+  ['soso', /\b(?:regular|normal|normalito|asi asi|mas o menos|regulero)\b/],
+  [
+    'good',
+    /\b(?:bien|bienn+|genial|super|feliz|contenta|contento|guay|fenomenal|estupendo|estupenda|alegre|chachi|fenomenal|de maravilla|muy bien)\b/,
+  ],
+];
+
+function readMood(normalized: string): Answer | null {
+  if (NOT_GOOD.test(normalized)) return { kind: 'mood', mood: 'bad' };
+  if (/\bno (?:\w+ )?mal\b/.test(normalized)) return { kind: 'mood', mood: 'soso' };
+  const found = MOODS.find(([, pattern]) => pattern.test(normalized));
+  return found ? { kind: 'mood', mood: found[0] } : null;
+}
+
 /** Reads the answer to her question, or null when it is not one. */
 export function readAnswer(question: Question, text: string): Answer | null {
   const normalized = normalizeForFilter(text);
@@ -123,5 +147,7 @@ export function readAnswer(question: Question, text: string): Answer | null {
       return readFree(text);
     case 'choice':
       return readChoice(normalized, question.options);
+    case 'mood':
+      return readMood(normalized);
   }
 }

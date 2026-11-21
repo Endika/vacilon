@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.6](https://github.com/Endika/vacilon/compare/v0.1.5...v0.1.6) (2026-11-21)
+
+
+### Features
+
+* **web:** follow how she feels when chispa asks ([329af26](https://github.com/Endika/vacilon/commit/329af26d44046f52f9233fba0bf2861b38a00b11))
+* **web:** follow open questions with a short echo ([7450c25](https://github.com/Endika/vacilon/commit/7450c252cf3c38cb18750e9faf059e27a31ddf0c))
+
+
+### Bug Fixes
+
+* **web:** follow open questions only when they close her reply ([8d94aa9](https://github.com/Endika/vacilon/commit/8d94aa9631e95efbbbb279c301461ef0b83493bf))
+
 ## [0.1.5](https://github.com/Endika/vacilon/compare/v0.1.4...v0.1.5) (2026-11-21)
 
 

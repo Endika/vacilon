@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+
+<g transform="translate(0 0) scale(1)">
+  <defs>
+    <radialGradient id="chispa-shell" cx="36%" cy="28%" r="90%">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="0.65" stop-color="#ffffff" />
+      <stop offset="1" stop-color="#f4e8fa" />
+    </radialGradient>
+  </defs>
+  <ellipse class="shadow" cx="100" cy="190" rx="42" ry="6" fill="#e9dcf3" />
+  <g class="float">
+    <g class="dancer">
+    <g class="jumper">
+      <g class="breathe">
+        <path class="shell" d="M100 26 C150 26 168 92 168 122 C168 160 138 180 100 180 C62 180 32 160 32 122 C32 92 50 26 100 26 Z" fill="url(#chispa-shell)" stroke="#f08bb4" stroke-width="4" />
+        <path class="base" d="M60 150 C80 166 120 166 140 150 C134 172 66 172 60 150 Z" fill="#ffc4dc" />
+        <circle cx="70" cy="62" r="3.2" fill="#ffc4dc" opacity="0.8" />
+        <circle cx="86" cy="48" r="2.2" fill="#ffc4dc" opacity="0.8" />
+        <circle cx="132" cy="58" r="2.6" fill="#ffc4dc" opacity="0.8" />
+        <path class="curl" d="M100 26 q-6 -12 4 -18" stroke="#f08bb4" stroke-width="4" fill="none" stroke-linecap="round" />
+        <circle class="spark" cx="104" cy="7" r="3.5" fill="#ffd166" />
+        <g class="look">
+          <g class="eye eye-left">
+            <g class="eye-open">
+              <ellipse cx="78" cy="104" rx="14" ry="18" fill="#2b2140" />
+              <circle cx="83" cy="96" r="5.5" fill="#fff" />
+              <circle cx="73" cy="111" r="2.4" fill="#fff" />
+            </g>
+            <path class="eye-happy" display="none" d="M64 108 Q78 90 92 108" stroke="#2b2140" stroke-width="5" fill="none" stroke-linecap="round" />
+            <path class="eye-closed" display="none" d="M65 106 Q78 114 91 106" stroke="#2b2140" stroke-width="5" fill="none" stroke-linecap="round" />
+          </g>
+          <g class="eye eye-right">
+            <g class="eye-open">
+              <ellipse cx="122" cy="104" rx="14" ry="18" fill="#2b2140" />
+              <circle cx="127" cy="96" r="5.5" fill="#fff" />
+              <circle cx="117" cy="111" r="2.4" fill="#fff" />
+            </g>
+            <path class="eye-happy" display="none" d="M108 108 Q122 90 136 108" stroke="#2b2140" stroke-width="5" fill="none" stroke-linecap="round" />
+            <path class="eye-closed" display="none" d="M109 106 Q122 114 135 106" stroke="#2b2140" stroke-width="5" fill="none" stroke-linecap="round" />
+          </g>
+        </g>
+        <ellipse class="cheek cheek-left" cx="58" cy="128" rx="10" ry="6.5" fill="#ffc4dc" />
+        <ellipse class="cheek cheek-right" cx="142" cy="128" rx="10" ry="6.5" fill="#ffc4dc" />
+        <g class="mouth">
+          <path class="mouth-smile" d="M92 129 q8 8 16 0" stroke="#2b2140" stroke-width="3.5" fill="none" stroke-linecap="round" />
+          <path class="mouth-flat" display="none" d="M93 133 h14" stroke="#2b2140" stroke-width="3.5" fill="none" stroke-linecap="round" />
+          <ellipse class="mouth-small" display="none" cx="100" cy="133" rx="3.5" ry="4" fill="#2b2140" />
+          <path class="mouth-open" display="none" d="M91 128 Q100 126 109 128 Q108 144 100 144 Q92 144 91 128 Z" fill="#2b2140" stroke="#2b2140" stroke-width="3" stroke-linejoin="round" />
+          <ellipse class="mouth-yawn" display="none" cx="100" cy="136" rx="9" ry="12" fill="#2b2140" />
+        </g>
+        <g class="zzz" opacity="0" font-family="#000" font-weight="800" fill="#6c5f86">
+          <text class="z z1" x="146" y="60" font-size="22">z</text>
+          <text class="z z2" x="158" y="44" font-size="17">z</text>
+          <text class="z z3" x="168" y="30" font-size="13">z</text>
+        </g>
+      </g>
+    </g>
+    </g>
+  </g>
+</g></svg>

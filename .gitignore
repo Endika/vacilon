@@ -26,6 +26,10 @@ web/coverage/
 # Ear model: fetched by `npm run ear`, kept out of git and out of the default precache
 web/public/ear/*.tar.gz
 
+# Runtime files copied from node_modules by vite.config.ts
+web/public/voice/ort/
+web/public/ear/vosk.*
+
 # Editors and OS
 .DS_Store
 *.swp

@@ -41,6 +41,6 @@
   },
   "dependencies": {
     "@lichess-org/vosk-browser": "0.0.3",
-    "onnxruntime-web": "1.22.0"
+    "onnxruntime-web": "1.31.1"
   }
 }

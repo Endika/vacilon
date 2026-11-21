@@ -49,8 +49,11 @@ export const SAMPLE_RATE = 16000;
 export interface Engine {
   /** Reports the model download as a fraction between 0 and 1. */
   load(onProgress: (fraction: number) => void): Promise<void>;
-  /** Starts an utterance; `onPartial` receives the text recognised so far. */
-  begin(onPartial: (text: string) => void): void;
+  /**
+   * Starts an utterance; `onPartial` receives the text recognised so far and `onPause` fires
+   * when the speaker stops after saying something.
+   */
+  begin(onPartial: (text: string) => void, onPause: () => void): void;
   /** Takes 16 kHz mono samples. */
   feed(chunk: Float32Array): void;
   /** Ends the utterance and resolves with the final text. */

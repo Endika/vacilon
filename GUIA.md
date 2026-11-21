@@ -50,13 +50,14 @@ Después de instalar una versión, vuelve a lanzar `make app` para que los móvi
 
 ## El oído de Chispa
 
-**Mantén pulsado el botón del micrófono** (o la barra espaciadora, en el PC, con el cursor fuera del
-cuadro de texto), habla y **suelta**: lo que se ha dicho se escribe solo y se envía, con trucos y frases
-fijas incluidos. Mientras escucha, a Chispa se le enciende la antena.
+**Toca el botón del micrófono** (o la barra espaciadora, en el PC, con el cursor fuera del cuadro de
+texto) y habla. Deja de escuchar sola cuando te callas, si vuelves a tocar el micro, si en 6 segundos no
+oye nada o, como mucho, a los 15 segundos. Lo que se ha dicho se escribe solo y se envía, con trucos y
+frases fijas incluidos. Mientras escucha, a Chispa se le enciende la antena.
 
 - Usa Vosk (modelo `vosk-model-small-es-0.42`, ~43 MB). Todo pasa en el dispositivo: el audio no sale
   nunca ni se guarda, y el texto tampoco. Nada del reconocimiento de Google o Apple.
-- Se descarga la primera vez que se pulsa el micro («preparando mis orejas…»). Sin «Instalar Chispa» no se
+- Se descarga la primera vez que se toca el micro («preparando mis orejas…»). Sin «Instalar Chispa» no se
   queda guardado; al instalar, sí, para usarlo sin conexión.
 - Probarlo en el PC: `make dev` y abrir `http://localhost:5173` en el navegador de Windows (en
   `localhost` el navegador deja usar el micro).

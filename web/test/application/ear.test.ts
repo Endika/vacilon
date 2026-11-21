@@ -18,14 +18,16 @@ class FakeEngine implements Engine {
   fed = 0;
   begun = 0;
   onPartial: (text: string) => void = () => undefined;
+  onPause: () => void = () => undefined;
 
   async load(onProgress: (fraction: number) => void): Promise<void> {
     onProgress(0.5);
     await this.gate?.promise;
   }
-  begin(onPartial: (text: string) => void): void {
+  begin(onPartial: (text: string) => void, onPause: () => void): void {
     this.begun++;
     this.onPartial = onPartial;
+    this.onPause = onPause;
   }
   feed(): void {
     this.fed++;
@@ -71,6 +73,7 @@ function setup(supported = true) {
       onLoading: (state) => loading.push(state),
       onPartial: (text) => partials.push(text),
       onListening: (on) => events.push(on ? 'on' : 'off'),
+      onPause: () => events.push('pause'),
     },
   );
   return { ear, engine, engines, capture, events, loading, partials };
@@ -108,6 +111,13 @@ describe('Ear', () => {
     expect(await ear.release()).toEqual({ kind: 'text', text: 'hola chispa' });
     expect(capture.running).toBe(false);
     expect(events).toEqual(['on', 'off']);
+  });
+
+  it('passes on the pause the engine hears after speech', async () => {
+    const { ear, engine, events } = setup();
+    await ear.press();
+    engine.onPause();
+    expect(events).toEqual(['on', 'pause']);
   });
 
   it('does not reload the engine on later presses', async () => {

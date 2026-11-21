@@ -3,6 +3,14 @@ import type { FaceMachine } from '../domain/face/machine';
 import { Ear } from './ear';
 import type { Capture, Engine } from './ports';
 
+/** Starts `run` after `ms` and returns a function that cancels it. */
+export type StartTimer = (run: () => void, ms: number) => () => void;
+
+/** With nothing heard by then, she stops listening. */
+export const NO_SPEECH_MS = 6_000;
+/** The microphone is never open longer than this. */
+export const MAX_LISTEN_MS = 15_000;
+
 export interface ListeningDeps {
   engine: () => Engine;
   capture: () => Capture;
@@ -14,6 +22,7 @@ export interface ListeningDeps {
   submit: (text: string) => void;
   say: (text: string) => void;
   view: ListeningView;
+  timer: StartTimer;
 }
 
 export interface ListeningView {
@@ -23,15 +32,22 @@ export interface ListeningView {
   hide(): void;
 }
 
-/** Hold to talk: what she hears becomes a message, and a failed hearing is told kindly. */
+/**
+ * Tap to talk: she listens until the speaker pauses, taps again or a time limit passes; what she
+ * hears becomes a message, and a failed hearing is told kindly.
+ */
 export class Listening {
   private readonly ear: Ear;
+  private readonly timer: StartTimer;
   private held = false;
   private earLoading = false;
   private active = false;
+  private heard = false;
+  private cancelTimers: Array<() => void> = [];
 
   constructor(private readonly deps: ListeningDeps) {
     const { view, face } = deps;
+    this.timer = deps.timer;
     this.ear = new Ear(
       { engine: deps.engine, capture: deps.capture, supported: deps.supported },
       {
@@ -39,13 +55,22 @@ export class Listening {
           this.earLoading = !state.done;
           view.loading(this.earLoading);
         },
-        onPartial: (text) => view.partial(text),
+        onPartial: (text) => {
+          if (text) this.heard = true;
+          view.partial(text);
+        },
         onListening: (on) => {
           this.active = on;
           view.listening(on);
-          if (on) face.startListening();
-          else face.stopListening();
+          if (on) {
+            face.startListening();
+            this.armTimers();
+          } else {
+            face.stopListening();
+            this.clearTimers();
+          }
         },
+        onPause: () => void this.release(),
       },
     );
   }
@@ -56,6 +81,11 @@ export class Listening {
 
   available(): boolean {
     return this.ear.available();
+  }
+
+  toggle(): void {
+    if (this.held) void this.release();
+    else this.press();
   }
 
   press(): void {
@@ -71,6 +101,21 @@ export class Listening {
     this.held = false;
     const loading = this.earLoading;
     this.perform(actionFor(await this.ear.release(), loading));
+  }
+
+  private armTimers(): void {
+    this.heard = false;
+    this.cancelTimers = [
+      this.timer(() => {
+        if (!this.heard) void this.release();
+      }, NO_SPEECH_MS),
+      this.timer(() => void this.release(), MAX_LISTEN_MS),
+    ];
+  }
+
+  private clearTimers(): void {
+    for (const cancel of this.cancelTimers) cancel();
+    this.cancelTimers = [];
   }
 
   private perform(action: EarAction): void {

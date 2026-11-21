@@ -7,6 +7,7 @@ export interface EarHandlers {
   onLoading(state: EarLoading): void;
   onPartial(text: string): void;
   onListening(listening: boolean): void;
+  onPause(): void;
 }
 
 export interface EarDeps {
@@ -64,7 +65,10 @@ export class Ear {
     const engine = this.engine!;
     const capture = this.deps.capture();
     try {
-      engine.begin((text) => this.handlers.onPartial(text));
+      engine.begin(
+        (text) => this.handlers.onPartial(text),
+        () => this.handlers.onPause(),
+      );
       await capture.start((chunk) => engine.feed(chunk));
     } catch (error) {
       return isDenied(error) ? 'denied' : 'error';

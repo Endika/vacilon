@@ -21,6 +21,8 @@ export interface Trick {
   id: string;
   /** Matched against `normalizeForFilter` output. */
   triggers: RegExp[];
+  /** For tricks that need the message as typed (symbols such as "+" do not survive normalization). */
+  matches?(text: string): boolean;
   /** `text` is the message that matched, as typed. */
   run(stage: Stage, text: string): Promise<FollowUp | null>;
 }

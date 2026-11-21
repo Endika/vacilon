@@ -1,6 +1,7 @@
 import type { Rng } from '../random';
 import { matchIntent } from '../conversation/guardrails';
 import { normalizeForFilter } from '../conversation/safety';
+import { createCalculator } from './calculator';
 import { createColorQuiz } from './color-quiz';
 import { createColors } from './colors';
 import { createDance } from './dance';
@@ -21,6 +22,7 @@ export function createTricks(rng: Rng, names: () => readonly string[] = () => []
     createSing(rng),
     createRiddle(rng, names),
     createMathProblem(rng, names),
+    createCalculator(rng),
     createFact(rng),
     createColors(rng),
     createColorQuiz(rng, names),
@@ -33,5 +35,9 @@ export function createTricks(rng: Rng, names: () => readonly string[] = () => []
 export function matchTrick(text: string, tricks: Trick[]): Trick | null {
   if (matchIntent(text)) return null;
   const normalized = normalizeForFilter(text);
-  return tricks.find((trick) => trick.triggers.some((t) => t.test(normalized))) ?? null;
+  return (
+    tricks.find(
+      (trick) => trick.triggers.some((t) => t.test(normalized)) || trick.matches?.(text) === true,
+    ) ?? null
+  );
 }

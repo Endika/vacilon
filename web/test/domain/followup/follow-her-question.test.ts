@@ -88,6 +88,7 @@ describe('classify', () => {
     '¡Qué divertido!',
     '¿Quieres que te cuente un secreto?',
     '¿Me cuentas más? Bip.',
+    'Chiste: ¿qué hace un pez? Nada. Jajabip. ¡Pídeme otro si quieres!',
     '¿O no?',
   ])('leaves %s alone', (reply) => {
     expect(classify(reply)).toEqual([]);

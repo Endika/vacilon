@@ -95,6 +95,25 @@ no, inventa el cerebro pequeño. Orden: frases fijas → trucos → memoria → 
 - El reparto entre entrenar y validar es estable: cada frase va siempre al mismo lado según su texto, así
   la pérdida de validación del examen compara bien aunque cambie el corpus.
 
+## Sigue el hilo de sus preguntas
+
+Cuando Chispa acaba con una pregunta que sabe seguir, la siguiente respuesta se lee con esa pregunta en
+mente. Si encaja, reacciona a lo que se le ha dicho; si no, contesta el cerebro como siempre. Los temas
+serios, los nombres y los trucos van antes.
+
+| Si pregunta… | y le dicen… | reacciona |
+|---|---|---|
+| una cuenta («¿cuánto es 7 menos 4?») | un número | dice si está bien y, si no, la solución |
+| «¿de qué color…?» | un color | repite el color y pregunta algo de ese color |
+| «¿cuántos…?» | un número | lo repite |
+| «¿qué animal / mascota…?» | un animal | lo repite con su artículo |
+| «¿cómo se llama tu perro?» | un nombre corto | lo repite y, si sabe de quién es, lo dice |
+| «¿cuál es tu comida favorita?» | algo corto (hasta 4 palabras) | lo repite: «tu comida favorita es…» |
+| «¿rosa o azul?» | una de las dos | repite la elegida |
+
+Mira todas las preguntas de su respuesta, empezando por la última. Lo que repite pasa siempre por el
+filtro de palabras. Las frases están en `web/src/domain/followup/content.ts`.
+
 ## Frases fijas (temas serios y quién es Chispa)
 
 Antes de preguntar al modelo, Chispa mira si el mensaje habla de algo serio (miedo, tristeza, una

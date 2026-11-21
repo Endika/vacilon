@@ -6,6 +6,7 @@ import { Speaking } from './application/speaking';
 import { createStage } from './application/stage';
 import { VoiceStartup } from './application/voice-startup';
 import { FaceMachine, SLEEPING_VIEW } from './domain/face/machine';
+import { createQuestionFollowing } from './domain/followup/follow-her-question';
 import { createTricks } from './domain/tricks/registry';
 import { playSong } from './infrastructure/audio/song-player';
 import { BrainClient } from './infrastructure/brain/client';
@@ -94,6 +95,7 @@ async function main(host: HTMLElement): Promise<void> {
       composer.lock(busy);
       mic.lock(busy);
     },
+    followQuestion: createQuestionFollowing(Math.random),
   });
   const listening = new Listening({
     engine: () => new VoskEngine(),

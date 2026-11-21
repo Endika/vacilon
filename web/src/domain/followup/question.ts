@@ -9,7 +9,7 @@ export type Question =
   | { kind: 'number' }
   /** "¿Qué tal estás?": how the child feels. */
   | { kind: 'mood' }
-  /** Any other question led by an interrogative word. */
+  /** Any other question led by an interrogative word that closes her reply, so a joke she answers herself is left alone. */
   | { kind: 'open' }
   | { kind: 'animal' }
   /** `about`: what is named, as she wrote it ("tu perro"), or empty. */
@@ -28,8 +28,13 @@ export interface Option {
 const MAX_OPTION_WORDS = 3;
 
 /** Every question in the reply, the last one first. */
-function questionsIn(reply: string): string[] {
-  return [...reply.matchAll(/¿([^¿?]+)\?/g)].map((match) => match[1].trim()).reverse();
+function questionsIn(reply: string): { text: string; closing: boolean }[] {
+  return [...reply.matchAll(/¿([^¿?]+)\?/g)]
+    .map((match) => ({
+      text: match[1].trim(),
+      closing: !/\p{L}/u.test(reply.slice((match.index ?? 0) + match[0].length)),
+    }))
+    .reverse();
 }
 
 function nameQuestion(question: string): Question | null {
@@ -85,7 +90,7 @@ function openQuestion(normalized: string): Question | null {
   return OPEN_QUESTION.test(normalized) && !PROPOSAL.test(normalized) ? { kind: 'open' } : null;
 }
 
-function classifyOne(question: string): Question | null {
+function classifyOne(question: string, closing: boolean): Question | null {
   const normalized = normalizeForFilter(question);
   if (MOOD_QUESTION.test(normalized)) return { kind: 'mood' };
   const sum = sumQuestion(question);
@@ -97,10 +102,10 @@ function classifyOne(question: string): Question | null {
   if (/\b(de )?que color\b/.test(normalized)) return { kind: 'color' };
   if (/\bque (animal|mascota)\b/.test(normalized)) return { kind: 'animal' };
   if (/\bcuant(o|a|os|as)\b/.test(normalized)) return { kind: 'number' };
-  return choiceQuestion(question) ?? openQuestion(normalized);
+  return choiceQuestion(question) ?? (closing ? openQuestion(normalized) : null);
 }
 
 /** The questions in her reply she can follow, the last one first. */
 export function classify(reply: string): Question[] {
-  return questionsIn(reply).flatMap((question) => classifyOne(question) ?? []);
+  return questionsIn(reply).flatMap(({ text, closing }) => classifyOne(text, closing) ?? []);
 }

@@ -130,7 +130,7 @@ export const MOOD_SOSO = [
 export const MOOD_BAD = [
   'Vaya, siento que hoy no sea un buen día. Estoy aquí contigo. ¿Quieres contármelo o prefieres que te cuente un chiste?',
   'Gracias por decírmelo. A veces los días son difíciles y no pasa nada. ¿Te apetece que hagamos un baile para animarnos, o me cuentas qué ha pasado?',
-  'Un abrazo de bips para ti. Si es algo grande, también puedes contárselo a mamá, papá o a un adulto. ¿Quieres que hablemos de ello o te cuento un chiste?',
+  'Un abrazo de bips para ti. Si es algo grande, también puedes contárselo a alguien de tu familia o a otra persona mayor de confianza. ¿Quieres que hablemos de ello o te cuento un chiste?',
 ];
 
 export const MOOD_TIRED = [
@@ -161,7 +161,7 @@ export const OPEN_PLAIN = [
 ];
 
 export const OPEN_DONT_KNOW = [
-  '¡No pasa nada! A mí también se me quedan los bips en blanco a veces. Probamos entre las dos: tú dices una idea y yo digo otra. ¿Empiezas?',
+  '¡No pasa nada! A mí también se me quedan los bips en blanco a veces. Lo pensamos entre tú y yo: tú dices una idea y yo digo otra. ¿Empiezas?',
   '¡Tranquilidad! No hace falta saberlo todo. Te propongo un juego: tú inventas una respuesta y yo intento adivinarla. ¿Te animas?',
   'Vale, no pasa nada. Pensar con calma también es de valientes. ¿Quieres que te cuente un chiste mientras lo piensas?',
 ];

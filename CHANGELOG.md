@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/Endika/vacilon/compare/v0.1.4...v0.1.5) (2026-11-21)
+
+
+### Features
+
+* **web:** follow up on the questions chispa asks ([788e1b6](https://github.com/Endika/vacilon/commit/788e1b610b1d07e6d8baf018ec67882ba1f025ff))
+
 ## [0.1.4](https://github.com/Endika/vacilon/compare/v0.1.3...v0.1.4) (2026-11-21)
 
 

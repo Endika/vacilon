@@ -43,7 +43,8 @@ async function main(host: HTMLElement): Promise<void> {
   const loader = createLoader(host);
   const status = createStatus();
 
-  const voice = new VoiceSelector(new Tts(), safeStorage());
+  const tts = new Tts();
+  const voice = new VoiceSelector(tts, safeStorage());
   const piper = createPiperVoice(assetUrl('voice/'));
   const brain = new BrainClient(
     new Worker(new URL('./infrastructure/brain/worker.ts', import.meta.url), { type: 'module' }),
@@ -62,6 +63,7 @@ async function main(host: HTMLElement): Promise<void> {
     voice,
     neural: piper,
     speaking,
+    systemVoice: () => tts.canSpeak,
     onLoading: status.voiceLoading,
   });
   const stage = createStage({

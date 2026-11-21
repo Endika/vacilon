@@ -36,9 +36,13 @@ describe('pickVoice', () => {
     expect(pickVoice(voices)?.name).toBe('Local');
   });
 
-  it('prefers a remote es-ES voice over a local es-MX one', () => {
-    const voices = [v('Local MX', 'es-MX', true), v('Remota ES', 'es-ES', false)];
-    expect(pickVoice(voices)?.name).toBe('Remota ES');
+  it('takes a local es-MX voice over a remote es-ES one', () => {
+    const voices = [v('Remota ES', 'es-ES', false), v('Local MX', 'es-MX', true)];
+    expect(pickVoice(voices)?.name).toBe('Local MX');
+  });
+
+  it('never picks a remote voice', () => {
+    expect(pickVoice([v('Remota ES', 'es-ES', false)])).toBeNull();
   });
 
   it('is case insensitive and keeps the first of equals', () => {

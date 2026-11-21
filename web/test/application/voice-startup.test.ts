@@ -4,7 +4,7 @@ import { VoiceStartup } from '../../src/application/voice-startup';
 
 const piper = { name: 'piper' } as Speaker;
 
-function setup(audio = true) {
+function setup(audio = true, systemVoice = false) {
   const events: string[] = [];
   const neural: NeuralVoice = {
     open: () => (events.push('open'), audio),
@@ -17,6 +17,7 @@ function setup(audio = true) {
     },
     neural,
     speaking: { resume: () => void events.push('resume') },
+    systemVoice: () => systemVoice,
     onLoading: (loading) => void events.push(`loading:${loading}`),
   });
   return { startup, events };
@@ -59,5 +60,13 @@ describe('VoiceStartup', () => {
     startup.brainLoaded();
     await flush();
     expect(events).not.toContain('build');
+  });
+
+  it('keeps the device voice and skips the neural download when the device has one', async () => {
+    const { startup, events } = setup(true, true);
+    startup.gesture();
+    startup.brainLoaded();
+    await flush();
+    expect(events).toEqual(['unlock', 'open', 'resume']);
   });
 });

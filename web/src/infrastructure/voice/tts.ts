@@ -14,8 +14,9 @@ export class Tts implements Speaker {
   private unlocked = false;
   private current = 0;
 
+  /** Only with a Spanish voice on the device: without one, the text would go to an unknown voice. */
   get canSpeak(): boolean {
-    return this.synth !== null && this.synth.getVoices().length > 0;
+    return this.synth !== null && pickVoice(this.synth.getVoices()) !== null;
   }
 
   unlock(): void {

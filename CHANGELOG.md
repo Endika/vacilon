@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/Endika/vacilon/compare/v0.1.2...v0.1.3) (2026-11-21)
+
+
+### Features
+
+* **web:** speak with the device voice and use piper only without one ([469aebb](https://github.com/Endika/vacilon/commit/469aebbea06b5e350be57ece89b10174fdd42c48))
+
 ## [0.1.2](https://github.com/Endika/vacilon/compare/v0.1.1...v0.1.2) (2026-11-21)
 
 

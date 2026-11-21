@@ -24,11 +24,11 @@ Para parar un servidor: Ctrl+C en su terminal.
 
 ## La voz de Chispa
 
-Chispa habla con una voz neuronal propia (Piper, la voz mexicana `es_MX-claude-high`, más aguda y con un toque robótico). Todo se ejecuta en el móvil, sin servidor. Pesa unos **76 MB** (63 MB el modelo y 13 MB el motor), mucho más que el resto de la app junta (9 MB).
+Chispa habla con la **voz del propio móvil** (la de Google en Android, la de Apple en el iPhone), algo más aguda. Solo se usan voces instaladas en el dispositivo: las que van por internet se descartan, para que lo que dice Chispa no salga del móvil. Cada dispositivo suena distinto.
 
-- **La primera vez** Chispa habla con la voz del móvil. En cuanto se toca algo y ha despertado, descarga su voz en segundo plano (sale «preparando mi voz…» arriba a la izquierda de la zona de Chispa, en pequeño) y cuando está lista cambia sola, sin recargar. Si algo falla (poca memoria, navegador antiguo), se queda con la voz del móvil.
+- **Si el móvil no tiene ninguna voz en español instalada**, Chispa usa su voz neuronal propia (Piper, la voz mexicana `es_MX-claude-high`, con un toque robótico), que pesa unos **76 MB** (63 MB el modelo y 13 MB el motor). En cuanto se toca algo y ha despertado, la descarga en segundo plano (sale «preparando mi voz…» arriba a la izquierda de la zona de Chispa, en pequeño); mientras tanto no habla en voz alta.
 - Sin pulsar «Instalar Chispa» la voz no se guarda para usarla sin conexión: solo la caché normal del navegador. Al instalar se guarda con el modelo y el oído, y la instalación pasa a pesar unos 125 MB.
-- El botón del altavoz silencia las dos voces.
+- El botón del altavoz silencia la voz, sea cual sea.
 - Licencias de la voz y de espeak-ng en `web/THIRD_PARTY.md` (la de la voz, pendiente de revisar).
 
 ## Mejorar a Chispa (ciclo completo)

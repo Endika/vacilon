@@ -5,10 +5,15 @@ export interface VoiceStartupDeps {
   voice: Pick<Voice, 'unlock' | 'prepare'>;
   neural: NeuralVoice;
   speaking: Pick<Speaking, 'resume'>;
+  /** True when the device has a voice of its own to speak with. */
+  systemVoice: () => boolean;
   onLoading(loading: boolean): void;
 }
 
-/** The neural voice waits for the first gesture (audio needs it) and for the brain, so the two downloads never compete. */
+/**
+ * The device's own voice comes first; the neural voice is only built when there is none. It waits for
+ * the first gesture (audio needs it) and for the brain, so the two downloads never compete.
+ */
 export class VoiceStartup {
   private gestured = false;
   private brainReady = false;
@@ -34,6 +39,7 @@ export class VoiceStartup {
   private prepare(): void {
     if (this.started || !this.gestured || !this.brainReady || !this.audioOpen) return;
     this.started = true;
+    if (this.deps.systemVoice()) return;
     this.deps.onLoading(true);
     void this.deps.voice
       .prepare(() => this.deps.neural.build())

@@ -6,11 +6,12 @@ export interface VoiceInfo {
 
 const langOf = (voice: VoiceInfo): string => voice.lang.toLowerCase().replace('_', '-');
 
+/** Network voices are never used: they would send what Chispa says to a third party. */
 function rank(voice: VoiceInfo): number {
+  if (voice.localService === false) return -1;
   const lang = langOf(voice);
-  const base = lang === 'es-es' ? 0 : lang.startsWith('es-') || lang === 'es' ? 2 : -1;
-  if (base < 0) return -1;
-  return base + (voice.localService === false ? 1 : 0);
+  if (lang === 'es-es') return 0;
+  return lang.startsWith('es-') || lang === 'es' ? 1 : -1;
 }
 
 export function pickVoice<T extends VoiceInfo>(voices: readonly T[]): T | null {

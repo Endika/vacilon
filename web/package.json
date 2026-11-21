@@ -42,5 +42,9 @@
   "dependencies": {
     "@lichess-org/vosk-browser": "0.0.3",
     "onnxruntime-web": "1.31.1"
+  },
+  "overrides": {
+    "uuid": "^11.1.1",
+    "glob": "^14.0.6"
   }
 }

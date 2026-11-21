@@ -110,6 +110,13 @@ serios, los nombres y los trucos van antes.
 | «¿cómo se llama tu perro?» | un nombre corto | lo repite y, si sabe de quién es, lo dice |
 | «¿cuál es tu comida favorita?» | algo corto (hasta 4 palabras) | lo repite: «tu comida favorita es…» |
 | «¿rosa o azul?» | una de las dos | repite la elegida |
+| «¿qué tal estás?», «¿cómo te ha ido?» | bien, regular, mal o cansancio («no muy bien» cuenta como mal) | una reacción por ánimo; la de «mal» ofrece un chiste, un baile o hablarlo, y la de cansancio no insiste. Sin palabra de ánimo, contesta el cerebro |
+| cualquier otra pregunta que empiece por qué, cuál, dónde, quién, cuándo, cómo, con quién, por qué… | algo corto (hasta 5 palabras) | lo repite cambiando la persona («con mi hermana» → «con tu hermana», «voy» → «vas») y añade un gancho; «no sé» tiene sus propias frases |
+
+El comodín va el último: solo salta si la pregunta no es de ningún otro tipo. Las preguntas de sí o no y
+las propuestas («¿jugamos…?») no lo activan. Si la respuesta es larga, o empieza por un verbo en primera
+persona que no está en la lista cerrada de `followup/person.ts`, no la repite y reacciona de forma general
+(un tercio de las frases del comodín no repiten nada). Si la respuesta es larga o está vacía, contesta el cerebro.
 
 Mira todas las preguntas de su respuesta, empezando por la última. Lo que repite pasa siempre por el
 filtro de palabras. Las frases están en `web/src/domain/followup/content.ts`.

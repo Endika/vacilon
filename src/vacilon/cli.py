@@ -1,6 +1,7 @@
 import argparse
 import sys
 from collections.abc import Sequence
+from contextlib import suppress
 from pathlib import Path
 
 from vacilon.application.chat import WELCOME
@@ -24,7 +25,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     print(WELCOME)
     print('(escribe "salir" para irte)')
-    try:
+    with suppress(KeyboardInterrupt):
         while True:
             try:
                 line = input("tú> ").strip()
@@ -34,8 +35,6 @@ def main(argv: Sequence[str] | None = None) -> int:
                 break
             if line:
                 print(f"vacilón> {bot.reply(line)}")
-    except KeyboardInterrupt:
-        pass
     print()
     return 0
 

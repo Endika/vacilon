@@ -73,9 +73,9 @@ export function splitSentences(text: string): string[] {
     }
     let end = i;
     while (end < text.length && TERMINATOR.test(text[end])) end++;
+    const onlyDots = text.slice(i, end) === '.';
     while (end < text.length && CLOSERS.test(text[end])) end++;
     const atBoundary = end >= text.length || /\s/.test(text[end]);
-    const onlyDots = text.slice(i, end).replace(CLOSERS, '') === '.';
     const rest = text.slice(end).trimStart();
     if (atBoundary && !(onlyDots && isAbbreviation(text.slice(start, i), rest))) {
       sentences.push(text.slice(start, end));

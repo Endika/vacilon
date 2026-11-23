@@ -22,6 +22,12 @@ describe('splitSentences', () => {
     expect(splitSentences('¡¡Qué susto!! ¿¿En serio??')).toEqual(['¡¡Qué susto!!', '¿¿En serio??']);
   });
 
+  it('does not split after an abbreviation wrapped in several closing marks', () => {
+    expect(splitSentences('Trae fruta (peras, uvas, «etc.») y la guardamos.')).toEqual([
+      'Trae fruta (peras, uvas, «etc.») y la guardamos.',
+    ]);
+  });
+
   it('does not split after common abbreviations', () => {
     expect(splitSentences('La Sra. López vive con el Dr. Gómez. Se llevan bien.')).toEqual([
       'La Sra. López vive con el Dr. Gómez.',

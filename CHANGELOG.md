@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.8](https://github.com/Endika/vacilon/compare/v0.1.7...v0.1.8) (2026-11-23)
+
+
+### Bug Fixes
+
+* **voice:** keep an abbreviation wrapped in several closing marks in its sentence ([913a0f3](https://github.com/Endika/vacilon/commit/913a0f392a2095e80de329f4fc26824c84778927))
+
 ## [0.1.7](https://github.com/Endika/vacilon/compare/v0.1.6...v0.1.7) (2026-11-21)
 
 
